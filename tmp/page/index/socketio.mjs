@@ -3,7 +3,7 @@ import io from "socket.io-client"
 var socket = io()
 
 socket.on('connect', function () {
-    console.log('已链接到后端')
+    console.log('已连接到后端')
     socket.emit('自定义事件1', 'p-i-n-g')
 })
 socket.on('disconnect', function () {
