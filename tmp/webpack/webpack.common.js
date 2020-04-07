@@ -2,7 +2,6 @@ var path = require('path')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var { CleanWebpackPlugin } = require('clean-webpack-plugin')
 var fs = require('fs')
-var webpack = require('webpack')
 
 var 对象混合 = 对象1 => 对象2 => {
     var r = {}
@@ -36,11 +35,6 @@ var plugins = 页面.map(a => new HtmlWebpackPlugin({
 }))
 plugins = [
     ...plugins,
-    new webpack.ProvidePlugin({
-        $: "jquery",
-        jQuery: "jquery",
-        Popper: ['popper.js', 'default'],
-    }),
     new CleanWebpackPlugin(),
 ]
 
@@ -55,11 +49,12 @@ var webpack_module = {
         { test: /\.(js|mjs)$/, exclude: /(node_modules|bower_components)/, loader: "babel-loader" },
         { test: /\.(js|mjs)$/, use: ["source-map-loader"], enforce: "pre" },
 
+        { test: /\.html$/, loader: 'html-loader' },
         { test: /\.css$/, loader: "style-loader!css-loader" },
         { test: /\.scss$/, loader: 'style-loader!css-loader!sass-loader?sourceMap' },
 
-        { test: /\.(png|jpg|gif|svg)$/, loader: 'url-loader?limit=8192&name=image/[name].[ext]' },
-        { test: /\.(eot|ttf|woff)$/i, loader: 'url?limit=10000&name=fonts/[name].[ext]' },
+        { test: /\.(png|jpg|gif|svg|bmp|jpeg)$/, loader: 'url-loader?limit=8192&name=image/[name].[ext]?[hash]' },
+        { test: /\.(eot|ttf|woff|woff2)$/i, loader: 'url-loader?limit=8192&name=fonts/[name].[ext]?[hash]' },
     ]
 }
 var mode = 'development'
