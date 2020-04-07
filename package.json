@@ -1,0 +1,38 @@
+{
+  "name": "@lsby/ql_web",
+  "version": "1.0.0",
+  "description": "web项目模板",
+  "main": "index.js",
+  "bin": {
+    "lsby_ql_web": "./bin/ql_web.mjs"
+  },
+  "files": [
+    "/",
+    "!.*.swp",
+    "!._*",
+    "!.DS_Store",
+    "!.git",
+    "!.hg",
+    "!.npmrc",
+    "!.lock-wscript",
+    "!.svn",
+    "!.wafpickle-*",
+    "!config.gypi",
+    "!CVS",
+    "!npm-debug.log"
+  ],
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lsby/ql_web.git"
+  },
+  "keywords": [],
+  "author": "lsby",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lsby/ql_web/issues"
+  },
+  "homepage": "https://github.com/lsby/ql_web#readme"
+}
