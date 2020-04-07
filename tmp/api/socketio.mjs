@@ -1,7 +1,6 @@
+// 使用 socket.request.session 可访问 session
 export default io => {
     io.on('connection', function (socket) {
-        // 使用 socket.request.session 可访问 session
-
         console.log('已接受前端连接')
 
         socket.on('disconnect', function () {
