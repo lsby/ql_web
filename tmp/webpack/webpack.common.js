@@ -63,7 +63,6 @@ module.exports = {
     plugins,
     output,
     module: webpack_module,
-    mode,
 }
 
 process.on('uncaughtException', function (err) {
