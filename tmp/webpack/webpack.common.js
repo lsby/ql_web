@@ -57,7 +57,6 @@ var webpack_module = {
         { test: /\.(eot|ttf|woff|woff2)$/i, loader: 'url-loader?limit=8192&name=fonts/[name].[ext]?[hash]' },
     ]
 }
-var mode = 'development'
 
 module.exports = {
     entry,
