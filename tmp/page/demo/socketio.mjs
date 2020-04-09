@@ -1,4 +1,4 @@
-import io from "socket.io-client/dist/socket.io.slim.js"
+import io from "socket.io-client/dist/socket.io.js"
 
 var socket = io()
 
