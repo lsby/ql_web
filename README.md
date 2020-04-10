@@ -10,9 +10,10 @@
   - webpack 项目
   - 前后端分离, 可以分别单独运行前端和后端
   - 多页面模式, 自动读取页面结构, 一键打包为静态文件
-  - 一键部署
+  - node 一键部署
   - 后端基于 express
   - 全部使用 mjs 文件
+  - 内置 docker 一键部署
 - webpack 已配置
   - HtmlWebpackPlugin
   - CleanWebpackPlugin

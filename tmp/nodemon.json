@@ -3,9 +3,5 @@
         ""
     ],
     "ext": "js,mjs,json",
-    "watch": [],
-    "env": {
-        "NODE_ENV": "env",
-        "PORT": "3000"
-    }
+    "watch": []
 }
