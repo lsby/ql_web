@@ -44,6 +44,21 @@ var output = {
     publicPath: '/',
 }
 
+var externals = {
+    'fs': {
+        commonjs: 'fs',
+        commonjs2: 'fs',
+        amd: 'fs',
+        root: 'fs'
+    },
+    'path': {
+        commonjs: 'path',
+        commonjs2: 'path',
+        amd: 'path',
+        root: 'path'
+    },
+}
+
 var webpack_module = {
     rules: [
         { test: /\.(js|mjs)$/, exclude: /(node_modules|bower_components)/, loader: "babel-loader" },
@@ -62,6 +77,7 @@ module.exports = {
     entry,
     plugins,
     output,
+    externals,
     module: webpack_module,
 }
 
