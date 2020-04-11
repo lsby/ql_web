@@ -10,7 +10,7 @@ import session from 'express-session'
 import FileStore from 'session-file-store'
 import uuid from 'uuid'
 import route_api from '../api/route_api.mjs'
-import socketfun from '../api/socketio.mjs'
+import socket_event from '../api/socket_event.mjs'
 import urlEncodeChinese from './urlEncodeChinese.mjs'
 
 var __filename = fileURLToPath(import.meta.url)
@@ -59,7 +59,11 @@ sio.use(function (socket, next) {
     sessionMiddleware(socket.request, socket.request.res, next)
 })
 app.use(sessionMiddleware)
-socketfun(sio)
+sio.on('connection', function (socket) {
+    if (socket_event.connection != null) socket_event.connection(socket)()
+    socket.提交 = 名称 => 值 => socket.emit(名称, 值)
+    Reflect.ownKeys(socket_event).forEach(key => socket.on(key, socket_event[key](socket)))
+})
 
 server.listen(port)
 server.on('listening', (port => _ => console.log(`http://127.0.0.1:${port}`))(port))

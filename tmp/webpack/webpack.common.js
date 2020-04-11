@@ -57,6 +57,12 @@ var externals = {
         amd: 'path',
         root: 'path'
     },
+    'request': {
+        commonjs: 'request',
+        commonjs2: 'request',
+        amd: 'request',
+        root: 'request'
+    },
 }
 
 var webpack_module = {

@@ -14,6 +14,7 @@
     "docker_rm": "docker-compose stop && docker-compose rm -f"
   },
   "dependencies": {
+    "@lsby/node_ex": "^1.0.17",
     "bootstrap": "^4.4.1",
     "cookie-parser": "~1.4.4",
     "core-js": "^3.6.4",
