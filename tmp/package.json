@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "npx cross-env NODE_ENV=production PORT=80 node ./app/main.mjs",
-    "dev": "npx cross-env NODE_ENV=development PORT=3000 npx nodemon ./app/main.mjs",
+    "dev": "npx cross-env NODE_ENV=development PORT=3000 npx nodemon --inspect ./app/main.mjs",
     "web": "npx webpack-dev-server --config ./webpack/webpack.dev.js",
     "build": "npx webpack --config ./webpack/webpack.prod.js",
     "docker_build": "docker build -t ql_app .",
@@ -14,7 +14,7 @@
     "docker_rm": "docker-compose stop && docker-compose rm -f"
   },
   "dependencies": {
-    "@lsby/node_ex": "^1.0.17",
+    "@lsby/node_ex": "^1.0.18",
     "bootstrap": "^4.4.1",
     "cookie-parser": "~1.4.4",
     "core-js": "^3.6.4",

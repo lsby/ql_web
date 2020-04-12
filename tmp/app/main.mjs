@@ -6,8 +6,7 @@ import morgan from 'morgan'
 import { fileURLToPath } from 'url'
 import http from 'http'
 import socketio from 'socket.io'
-import session from 'express-session'
-import FileStore from 'session-file-store'
+import expressSession from 'express-session'
 import uuid from 'uuid'
 import route_api from '../api/route_api.mjs'
 import socket_event from '../api/socket_event.mjs'
@@ -28,6 +27,46 @@ app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
 app.use(urlEncodeChinese)
 
+// session
+var session = expressSession({
+    name: 'ql_web',
+    secret: uuid.v4(),
+    saveUninitialized: true,
+    autoSave: true,
+    resave: true,
+    cookie: { maxAge: null, httpOnly: true },
+})
+app.use(session)
+
+// session 与 socket.io 的联系
+var session_req_io_map = {}
+app.use(function (req, res, next) {
+    var sessionID = req.sessionID
+    session_req_io_map[sessionID] = session_req_io_map[sessionID] || {}
+    session_req_io_map[sessionID].get_session = _ => req.session
+    req.socketio = session_req_io_map[sessionID].socketio
+    next()
+})
+
+// socket.io
+var io = socketio(server, { cookie: false })
+io.on('connection', function (socket) {
+    session(socket.request, {}, function () {
+        var sessionID = socket.request.sessionID
+        session_req_io_map[sessionID] = session_req_io_map[sessionID] || {}
+        session_req_io_map[sessionID].socketio = socket
+
+        socket.提交 = 名称 => 值 => socket.emit(名称, 值)
+
+        if (socket_event.connection != null) socket_event.connection(socket)()
+        Reflect.ownKeys(socket_event).forEach(key => socket.on(key, (...args) => {
+            if (session_req_io_map[sessionID].get_session)
+                socket.session = session_req_io_map[sessionID].get_session()
+            socket_event[key](socket)(...args)
+        }))
+    })
+})
+
 app.use('/', express.static(path.join(__dirname, '../dist')))
 app.use('/api', route_api)
 
@@ -38,31 +77,6 @@ app.use(function (err, req, res, next) {
     console.log(err)
     res.status(err.status || 500)
     res.send(err)
-})
-
-// session
-var name = uuid.v4()
-var secret = uuid.v4()
-var store = new FileStore(session)()
-var sessionMiddleware = session({
-    name,
-    secret,
-    store,
-    saveUninitialized: false,
-    resave: false,
-    cookie: { maxAge: null, httpOnly: true }
-})
-
-// socket.io
-var sio = socketio(server)
-sio.use(function (socket, next) {
-    sessionMiddleware(socket.request, socket.request.res, next)
-})
-app.use(sessionMiddleware)
-sio.on('connection', function (socket) {
-    if (socket_event.connection != null) socket_event.connection(socket)()
-    socket.提交 = 名称 => 值 => socket.emit(名称, 值)
-    Reflect.ownKeys(socket_event).forEach(key => socket.on(key, socket_event[key](socket)))
 })
 
 server.listen(port)
