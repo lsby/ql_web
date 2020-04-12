@@ -11,7 +11,7 @@
     "dev": "npx cross-env NODE_ENV=development PORT=3000 npx nodemon --inspect ./app/main.mjs",
     "web": "npx webpack-dev-server --config ./webpack/webpack.dev.js",
     "build": "npx webpack --config ./webpack/webpack.prod.js",
-    "docker_build": "docker build -t ql_app .",
+    "docker_build": "docker build -t ql_web .",
     "docker_start": "docker-compose up -d --remove-orphans && docker-compose logs -f --tail=\"100\"",
     "docker_stop": "docker-compose stop",
     "docker_log": "docker-compose logs -f --tail=\"100\"",
