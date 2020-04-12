@@ -8,7 +8,7 @@
     "stop": "npx pm2 stop ql_web",
     "delete": "npx pm2 delete ql_web",
     "list": "npx pm2 list",
-    "log": "npx pm2 logs ql_web",
+    "logs": "npx pm2 logs",
     "dev": "npx cross-env NODE_ENV=development PORT=3000 npx nodemon --inspect ./app/main.mjs",
     "web": "npx webpack-dev-server --config ./webpack/webpack.dev.js",
     "build": "npx webpack --config ./webpack/webpack.prod.js",
