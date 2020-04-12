@@ -1,9 +1,13 @@
 {
-  "name": "ql_app",
+  "name": "ql_web",
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "npx cross-env NODE_ENV=production PORT=80 node ./app/main.mjs",
+    "start": "npx cross-env NODE_ENV=production PORT=80 npx pm2 start node -e ./logs/error.log -l ./logs/out.log --name ql_web -- ./app/main.mjs",
+    "restart": "npx pm2 restart ql_web",
+    "stop": "npx pm2 stop ql_web",
+    "delete": "npx pm2 delete ql_web",
+    "list": "npx pm2 list",
     "dev": "npx cross-env NODE_ENV=development PORT=3000 npx nodemon --inspect ./app/main.mjs",
     "web": "npx webpack-dev-server --config ./webpack/webpack.dev.js",
     "build": "npx webpack --config ./webpack/webpack.prod.js",
@@ -25,6 +29,7 @@
     "jquery": "^3.4.1",
     "morgan": "~1.9.1",
     "nodemon": "^2.0.3",
+    "pm2": "^4.2.3",
     "session-file-store": "^1.4.0",
     "socket.io": "^2.3.0",
     "socket.io-client": "^2.3.0",
