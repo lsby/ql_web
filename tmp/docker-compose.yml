@@ -4,4 +4,6 @@ services:
     image: ql_web
     ports:
       - 80:80
+    # volumes:
+      # - './config/:/api/config/'
     restart: always
