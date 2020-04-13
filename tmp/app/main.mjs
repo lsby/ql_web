@@ -11,11 +11,12 @@ import uuid from 'uuid'
 import route_api from '../api/route_api.mjs'
 import socket_event from '../api/socket_event.mjs'
 import urlEncodeChinese from './urlEncodeChinese.mjs'
+import config from '../config/app.mjs'
 
 var __filename = fileURLToPath(import.meta.url)
 var __dirname = path.dirname(__filename)
 
-var port = process.env.PORT || '3000'
+var port = config.端口
 var app = express()
 var server = http.createServer(app)
 
