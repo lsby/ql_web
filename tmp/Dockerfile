@@ -5,7 +5,7 @@ ENV HOME=/code
 RUN npm i \
     && npm run build \
     && npx pm2 set pm2-logrotate:max_size 10M \
-    && cp /code/config /code/configBack
-CMD cp /code/configBack/* /code/config/ \
+    && cp -r /code/config /code/configBack
+CMD cp -r /code/configBack/* /code/config/ \
     && npm start \
     && npm run logs
