@@ -4,8 +4,6 @@ WORKDIR /code
 ENV HOME=/code
 RUN npm i \
     && npm run build \
-    && npx pm2 set pm2-logrotate:max_size 10M \
-    && cp -r /code/config /code/configBack
-CMD cp -r /code/configBack/* /code/config/ \
-    && npm start \
+    && npx pm2 set pm2-logrotate:max_size 10M
+CMD npm start \
     && npm run logs
