@@ -45,24 +45,9 @@ var output = {
 }
 
 var externals = {
-    'fs': {
-        commonjs: 'fs',
-        commonjs2: 'fs',
-        amd: 'fs',
-        root: 'fs'
-    },
-    'path': {
-        commonjs: 'path',
-        commonjs2: 'path',
-        amd: 'path',
-        root: 'path'
-    },
-    'request': {
-        commonjs: 'request',
-        commonjs2: 'request',
-        amd: 'request',
-        root: 'request'
-    },
+    'fs': { commonjs: 'fs', commonjs2: 'fs', amd: 'fs', root: 'fs' },
+    'path': { commonjs: 'path', commonjs2: 'path', amd: 'path', root: 'path' },
+    'request': { commonjs: 'request', commonjs2: 'request', amd: 'request', root: 'request' },
 }
 
 var webpack_module = {
@@ -74,7 +59,7 @@ var webpack_module = {
         { test: /\.css$/, loader: "style-loader!css-loader" },
         { test: /\.scss$/, loader: 'style-loader!css-loader!sass-loader?sourceMap' },
 
-        { test: /\.(png|jpg|gif|svg|bmp|jpeg)$/, loader: 'url-loader?limit=8192&name=image/[name].[ext]?[hash]' },
+        { test: /\.(png|jpg|gif|svg|bmp|jpeg|jfif)$/, loader: 'url-loader?limit=8192&name=image/[name].[ext]?[hash]' },
         { test: /\.(eot|ttf|woff|woff2)$/i, loader: 'url-loader?limit=8192&name=fonts/[name].[ext]?[hash]' },
     ]
 }

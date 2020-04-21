@@ -1,7 +1,9 @@
 {
+    "script": "./app/main.mjs",
     "ignore": [
         ""
     ],
     "ext": "js,mjs,json",
-    "watch": []
+    "watch": [],
+    "nodeArgs": "--inspect"
 }

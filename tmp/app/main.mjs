@@ -12,6 +12,9 @@ import route_api from '../api/route_api.mjs'
 import socket_event from '../api/socket_event.mjs'
 import urlEncodeChinese from './urlEncodeChinese.mjs'
 import config from '../config/app.mjs'
+import webpack from 'webpack'
+import webpackDevMiddleware from 'webpack-dev-middleware'
+import webpackConfig from '../webpack/webpack.common.js'
 
 var __filename = fileURLToPath(import.meta.url)
 var __dirname = path.dirname(__filename)
@@ -68,7 +71,13 @@ io.on('connection', function (socket) {
     })
 })
 
-app.use('/', express.static(path.join(__dirname, '../dist')))
+console.log('以 ' + process.env.NODE_ENV + ' 模式启动')
+if (process.env.NODE_ENV == 'development')
+    app.use(webpackDevMiddleware(webpack(webpackConfig), { publicPath: webpackConfig.output.publicPath }))
+else if (process.env.NODE_ENV == 'production')
+    app.use('/', express.static(path.join(__dirname, '../dist')))
+else
+    throw '意外的模式:' + process.env.NODE_ENV
 app.use('/api', route_api)
 
 app.use(function (req, res, next) {
