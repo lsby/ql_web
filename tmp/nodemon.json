@@ -3,7 +3,7 @@
     "ignore": [
         ""
     ],
-    "ext": "js,mjs,json",
+    "ext": "js,mjs,json,html",
     "watch": [],
     "nodeArgs": "--inspect"
 }

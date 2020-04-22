@@ -15,6 +15,7 @@ import config from '../config/app.mjs'
 import webpack from 'webpack'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackConfig from '../webpack/webpack.common.js'
+import webpackConfigDev from '../webpack/webpack.dev.js'
 
 var __filename = fileURLToPath(import.meta.url)
 var __dirname = path.dirname(__filename)
@@ -73,7 +74,7 @@ io.on('connection', function (socket) {
 
 console.log('以 ' + process.env.NODE_ENV + ' 模式启动')
 if (process.env.NODE_ENV == 'development')
-    app.use(webpackDevMiddleware(webpack(webpackConfig), { publicPath: webpackConfig.output.publicPath }))
+    app.use(webpackDevMiddleware(webpack(webpackConfigDev), { publicPath: webpackConfig.output.publicPath }))
 else if (process.env.NODE_ENV == 'production')
     app.use('/', express.static(path.join(__dirname, '../dist')))
 else
