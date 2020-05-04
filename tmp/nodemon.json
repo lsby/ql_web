@@ -1,7 +1,7 @@
 {
     "script": "./app/main.js",
     "ignore": [
-        ""
+        "sessions/*"
     ],
     "ext": "js,mjs,json,html",
     "watch": [],
