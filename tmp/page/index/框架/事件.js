@@ -1,26 +1,26 @@
-import node_ex from '@lsby/node_ex'
-node_ex.default.工具.注入方法_全部()
+import { 对象, 数组 } from '@lsby/ql_js'
 import $ from 'jquery'
-import 数据 from './数据.mjs'
-import { 提交 } from './全局.mjs'
+import 数据 from './数据.js'
+import { 提交 } from './全局.js'
 
 var 已连接后端 = true
 
 export var 后端事件 = {}
 后端事件.connect = _ => {
     后端事件.写日志('已连接到后端')
-    if (已连接后端 == false) return window.location = window.location
+    if (已连接后端 == false) return location.reload()
 }
 后端事件.disconnect = _ => {
     后端事件.写日志('后端已断开')
     已连接后端 = false
 }
-后端事件.写日志 = str => 数据.日志 = 数据.日志
-    .split('\n')
-    .入队头(str)
-    .数组截取(0)(100)
-    .join('\n')
-    .trim()
+后端事件.写日志 = str => {
+    数据.日志 = 数组.从字符串生成(数据.日志)('\n')
+        .添加到开头(str)
+        .截取(0)(100)
+        .转字符串('\n')
+        .trim()
+}
 后端事件.控制台 = str => console.log(str)
 
 export var 前端事件 = {}

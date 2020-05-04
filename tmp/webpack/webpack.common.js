@@ -19,12 +19,12 @@ var 页面 = fs.readdirSync(页面路径).filter(a => {
     var 内容 = fs.readdirSync(path.join(页面路径, a))
     if (内容.length == 0)
         return false
-    if (!内容.includes('index.html') || !内容.includes('main.mjs'))
+    if (!内容.includes('index.html') || !内容.includes('main.js'))
         return false
     return true
 })
 
-var entry = 页面.map(a => ({ [a]: path.join(页面路径, a, 'main.mjs') }))
+var entry = 页面.map(a => ({ [a]: path.join(页面路径, a, 'main.js') }))
     .reduce((s, a) => 对象混合(s)(a), {})
 
 var plugins = 页面.map(a => new HtmlWebpackPlugin({
@@ -45,9 +45,10 @@ var output = {
 }
 
 var externals = {
-    'fs': { commonjs: 'fs', commonjs2: 'fs', amd: 'fs', root: 'fs' },
-    'path': { commonjs: 'path', commonjs2: 'path', amd: 'path', root: 'path' },
-    'request': { commonjs: 'request', commonjs2: 'request', amd: 'request', root: 'request' },
+    lodash: { commonjs: 'lodash', commonjs2: 'lodash', amd: 'lodash', root: '_' },
+    fs: { commonjs: 'fs', commonjs2: 'fs', amd: 'fs', root: 'fs' },
+    path: { commonjs: 'path', commonjs2: 'path', amd: 'path', root: 'path' },
+    request: { commonjs: 'request', commonjs2: 'request', amd: 'request', root: 'request' },
 }
 
 var webpack_module = {

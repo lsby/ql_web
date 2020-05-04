@@ -7,16 +7,18 @@ import { fileURLToPath } from 'url'
 import http from 'http'
 import socketio from 'socket.io'
 import expressSession from 'express-session'
-import uuid from 'uuid'
-import route_api from '../api/route_api.mjs'
-import socket_event from '../api/socket_event.mjs'
-import urlEncodeChinese from './urlEncodeChinese.mjs'
-import config from '../config/app.mjs'
+import { v4 } from 'uuid'
+import route_api from '../api/route_api.js'
+import socket_event from '../api/socket_event.js'
+import urlEncodeChinese from './urlEncodeChinese.js'
+import config from '../config/app.js'
 import webpack from 'webpack'
 import webpackDevMiddleware from 'webpack-dev-middleware'
 import webpackConfig from '../webpack/webpack.common.js'
 import webpackConfigDev from '../webpack/webpack.dev.js'
+import sessionFileStore from 'session-file-store'
 
+var FileStore = sessionFileStore(expressSession)
 var __filename = fileURLToPath(import.meta.url)
 var __dirname = path.dirname(__filename)
 
@@ -35,10 +37,11 @@ app.use(urlEncodeChinese)
 // session
 var session = expressSession({
     name: 'ql_web',
-    secret: uuid.v4(),
+    secret: v4(),
     saveUninitialized: true,
     autoSave: true,
     resave: true,
+    store: new FileStore,
     cookie: { maxAge: null, httpOnly: true },
 })
 app.use(session)

@@ -1,9 +1,13 @@
 {
-    "script": "./app/main.mjs",
+    "script": "./app/main.js",
     "ignore": [
         ""
     ],
     "ext": "js,mjs,json,html",
     "watch": [],
-    "nodeArgs": "--inspect"
+    "nodeArgs": [
+        "--inspect",
+        "-r",
+        "esm"
+    ]
 }
