@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start_node": "node ./node_modules/cross-env/src/bin/cross-env NODE_ENV=production PORT=80 node -r esm ./app/main.js",
-    "start": "node ./node_modules/cross-env/src/bin/cross-env NODE_ENV=production PORT=80 node -r esm ./node_modules/pm2/bin/pm2 start node -e ./logs/error.log -l ./logs/out.log --name ql_web -- ./app/main.js",
+    "start": "node ./node_modules/cross-env/src/bin/cross-env NODE_ENV=production PORT=80 node ./node_modules/pm2/bin/pm2 --node-args=\"-r esm\" start node -e ./logs/error.log -l ./logs/out.log --name ql_web ./app/main.js",
     "restart": "node ./node_modules/pm2/bin/pm2 restart ql_web",
     "stop": "node ./node_modules/pm2/bin/pm2 stop ql_web",
     "delete": "node ./node_modules/pm2/bin/pm2 delete ql_web",
