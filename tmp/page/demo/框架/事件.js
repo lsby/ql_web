@@ -8,10 +8,12 @@ var 已连接后端 = true
 export var 后端事件 = {}
 后端事件.connect = _ => {
     后端事件.写日志('已连接到后端')
+    后端事件.控制台('已连接到后端')
     if (已连接后端 == false) return location.reload()
 }
 后端事件.disconnect = _ => {
     后端事件.写日志('后端已断开')
+    后端事件.控制台('后端已断开')
     已连接后端 = false
 }
 后端事件.写日志 = str => {
