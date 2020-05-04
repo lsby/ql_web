@@ -1,5 +1,3 @@
-import 'bootstrap'
-import 'bootstrap/dist/css/bootstrap.min.css'
 import io from "socket.io-client/dist/socket.io.js"
 import vue from 'vue/dist/vue.js'
 import $ from 'jquery'

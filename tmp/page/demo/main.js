@@ -1,3 +1,6 @@
+import 'bootstrap'
+import 'bootstrap/dist/css/bootstrap.min.css'
+
 import { 对象, 数组 } from '@lsby/ql_js'
 import { 前端事件, 后端事件 } from './框架/事件.js'
 import { 初始化session, 初始化io, 初始化vue, 监听, 数据对象绑定, 事件对象绑定 } from './框架/全局.js'
