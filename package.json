@@ -1,10 +1,10 @@
 {
   "name": "@lsby/ql_web",
-  "version": "1.0.40",
+  "version": "1.0.41",
   "description": "web项目模板",
   "main": "index.js",
   "bin": {
-    "lsby_ql_web": "./bin/ql_web.mjs"
+    "lsby_ql_web": "node -r esm bin/ql_web.js"
   },
   "files": [
     "/",
@@ -34,5 +34,8 @@
   "bugs": {
     "url": "https://github.com/lsby/ql_web/issues"
   },
-  "homepage": "https://github.com/lsby/ql_web#readme"
+  "homepage": "https://github.com/lsby/ql_web#readme",
+  "dependencies": {
+    "esm": "^3.2.25"
+  }
 }
