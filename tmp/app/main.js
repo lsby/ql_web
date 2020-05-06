@@ -7,7 +7,6 @@ import { fileURLToPath } from 'url'
 import http from 'http'
 import socketio from 'socket.io'
 import expressSession from 'express-session'
-import { v4 } from 'uuid'
 import route_api from '../api/route_api.js'
 import socket_event from '../api/socket_event.js'
 import urlEncodeChinese from './urlEncodeChinese.js'
@@ -37,7 +36,7 @@ app.use(urlEncodeChinese)
 // session
 var session = expressSession({
     name: 'ql_web',
-    secret: v4(),
+    secret: 'ql_web',
     saveUninitialized: true,
     autoSave: true,
     resave: true,
