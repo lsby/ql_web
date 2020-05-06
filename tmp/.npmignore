@@ -103,9 +103,6 @@ dist
 # TernJS port file
 .tern-port
 
-# session文件
-sessions
-
 # 编译生成
 dist
 
