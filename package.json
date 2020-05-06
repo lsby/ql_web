@@ -1,10 +1,10 @@
 {
   "name": "@lsby/ql_web",
-  "version": "1.0.42",
+  "version": "1.0.43",
   "description": "web项目模板",
   "main": "index.js",
   "bin": {
-    "lsby_ql_web": "node -r esm ./bin/ql_web.js"
+    "lsby_ql_web": "./bin/main.js"
   },
   "files": [
     "/",
