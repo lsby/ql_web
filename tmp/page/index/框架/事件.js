@@ -1,4 +1,4 @@
-import { 对象, 数组 } from '@lsby/ql_js'
+import { 对象ex, 数组ex } from '@lsby/ql_js'
 import $ from 'jquery'
 import 数据 from './数据.js'
 import { 提交 } from './全局.js'
@@ -17,7 +17,7 @@ export var 后端事件 = {}
     已连接后端 = false
 }
 后端事件.写日志 = str => {
-    数据.日志 = 数组.从字符串生成(数据.日志)('\n')
+    数据.日志 = 数组ex.从字符串生成(数据.日志)('\n')
         .添加到开头(str)
         .截取(0)(100)
         .转字符串('\n')

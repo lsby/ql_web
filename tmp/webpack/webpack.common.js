@@ -45,7 +45,6 @@ var output = {
 }
 
 var externals = {
-    lodash: { commonjs: 'lodash', commonjs2: 'lodash', amd: 'lodash', root: '_' },
     fs: { commonjs: 'fs', commonjs2: 'fs', amd: 'fs', root: 'fs' },
     path: { commonjs: 'path', commonjs2: 'path', amd: 'path', root: 'path' },
     request: { commonjs: 'request', commonjs2: 'request', amd: 'request', root: 'request' },

@@ -19,7 +19,7 @@
     "docker_rm": "docker-compose stop && docker-compose rm -f"
   },
   "dependencies": {
-    "@lsby/ql_js": "^1.0.0",
+    "@lsby/ql_js": "^1.0.6",
     "bootstrap": "^4.4.1",
     "cookie-parser": "~1.4.4",
     "core-js": "^3.6.4",
@@ -29,7 +29,6 @@
     "http-errors": "~1.6.3",
     "jquery": "^3.4.1",
     "morgan": "~1.9.1",
-    "nodemon": "^2.0.3",
     "session-file-store": "^1.4.0",
     "socket.io": "^2.3.0",
     "socket.io-client": "^2.3.0",
@@ -49,6 +48,7 @@
     "gulp-nodemon": "^2.5.0",
     "html-loader": "^1.1.0",
     "html-webpack-plugin": "^4.3.0",
+    "nodemon": "^2.0.3",
     "pm2": "^4.4.0",
     "popper.js": "^1.16.1",
     "source-map-loader": "^0.2.4",
