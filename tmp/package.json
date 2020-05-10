@@ -19,7 +19,6 @@
     "docker_rm": "docker-compose stop && docker-compose rm -f"
   },
   "dependencies": {
-    "@lsby/ql_js": "^1.0.7",
     "bootstrap": "^4.4.1",
     "cookie-parser": "~1.4.4",
     "core-js": "^3.6.4",
@@ -52,7 +51,6 @@
     "popper.js": "^1.16.1",
     "source-map-loader": "^0.2.4",
     "style-loader": "^1.2.1",
-    "uglifyjs-webpack-plugin": "^2.2.0",
     "url-loader": "^4.0.0",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
