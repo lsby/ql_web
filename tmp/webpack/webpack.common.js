@@ -29,14 +29,13 @@ var 页面 = fs.readdirSync(页面路径).filter(a => {
 var entry = 页面.map(a => ({ [a]: path.join(页面路径, a, 'main.js') }))
     .reduce((s, a) => 对象混合(s)(a), {})
 
-var plugins = 页面.map(a => new HtmlWebpackPlugin({
-    title: a,
-    template: path.join(页面路径, a, 'index.html'),
-    filename: `${a}.html`,
-    chunks: [a],
-}))
-plugins = [
-    ...plugins,
+var plugins = [
+    ...页面.map(a => new HtmlWebpackPlugin({
+        title: a,
+        template: path.join(页面路径, a, 'index.html'),
+        filename: `${a}.html`,
+        chunks: [a],
+    })),
     new webpack.NoEmitOnErrorsPlugin(),
     new CleanWebpackPlugin(),
 ]
@@ -52,12 +51,13 @@ var output = {
 }
 
 var externals = {
-    // "jquery": '$',
-    // 'vue/dist/vue.js': 'Vue',
-    // 'socket.io-client/dist/socket.io.js': 'io',
-    // 'fs': { commonjs: 'fs', commonjs2: 'fs' },
-    // 'path': { commonjs: 'path', commonjs2: 'path' },
-    // 'request': { commonjs: 'request', commonjs2: 'request' },
+    "jquery": '$',
+    'vue/dist/vue.js': 'Vue',
+    'socket.io-client/dist/socket.io.js': 'io',
+    'lodash': { commonjs: 'lodash', commonjs2: 'lodash', amd: 'lodash', root: '_' },
+    'fs': { commonjs: 'fs', commonjs2: 'fs', amd: 'fs', root: 'fs' },
+    'path': { commonjs: 'path', commonjs2: 'path', amd: 'path', root: 'path' },
+    'request': { commonjs: 'request', commonjs2: 'request', amd: 'request', root: 'request' },
 }
 
 var webpack_module = {
@@ -79,6 +79,17 @@ module.exports = {
     output,
     externals,
     module: webpack_module,
+    optimization: {
+        splitChunks: {
+            cacheGroups: {
+                commons: {
+                    test: /[\\/]node_modules[\\/]/,
+                    name: "vendors",
+                    chunks: "all"
+                }
+            }
+        }
+    }
 }
 
 process.on('uncaughtException', function (err) {

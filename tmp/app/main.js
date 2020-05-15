@@ -78,6 +78,7 @@ app.use('/lib/jquery', express.static(path.join(__dirname, '../node_modules/jque
 app.use('/lib/vue', express.static(path.join(__dirname, '../node_modules/vue')))
 app.use('/lib/bootstrap', express.static(path.join(__dirname, '../node_modules/bootstrap')))
 app.use('/lib/popper.js', express.static(path.join(__dirname, '../node_modules/popper.js')))
+app.use('/lib/socket.io-client', express.static(path.join(__dirname, '../node_modules/socket.io-client')))
 
 // api
 app.use('/api', route_api)

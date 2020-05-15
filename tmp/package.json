@@ -17,7 +17,7 @@
     "docker_stop": "docker-compose stop",
     "docker_log": "docker-compose logs -f --tail=\"100\"",
     "docker_rm": "docker-compose stop && docker-compose rm -f",
-    "analyz": "cross-env NODE_ENV=development PORT=3000 analyz=true gulp"
+    "analyz": "cross-env NODE_ENV=development PORT=3000 analyz=true webpack --config ./webpack/webpack.prod.js"
   },
   "dependencies": {
     "bootstrap": "^4.4.1",
@@ -26,14 +26,15 @@
     "core-js": "^3.6.4",
     "cross-env": "^7.0.2",
     "esm": "^3.2.25",
+    "express": "^4.17.1",
     "express-session": "^1.17.1",
     "http-errors": "~1.6.3",
     "jquery": "^3.4.1",
     "morgan": "~1.9.1",
+    "popper.js": "^1.16.1",
     "socket.io": "^2.3.0",
     "socket.io-client": "^2.3.0",
-    "vue": "^2.6.11",
-    "webpack-hot-middleware": "^2.25.0"
+    "vue": "^2.6.11"
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
@@ -41,7 +42,6 @@
     "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^3.0.0",
     "css-loader": "^3.5.3",
-    "express": "^4.17.1",
     "file-loader": "^6.0.0",
     "gulp": "^4.0.2",
     "gulp-cli": "^2.2.0",
@@ -50,14 +50,12 @@
     "html-webpack-plugin": "^4.3.0",
     "nodemon": "^2.0.3",
     "pm2": "^4.4.0",
-    "popper.js": "^1.16.1",
     "source-map-loader": "^0.2.4",
     "style-loader": "^1.2.1",
     "url-loader": "^4.0.0",
     "webpack": "^4.43.0",
     "webpack-bundle-analyzer": "^3.7.0",
     "webpack-cli": "^3.3.11",
-    "webpack-dev-middleware": "^3.7.2",
     "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^4.2.2"
   }

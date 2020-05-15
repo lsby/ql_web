@@ -12,6 +12,6 @@ exports.default = function defaultTask(cb) {
 }
 // watch('**/*.js', _ => _)
 
-process.on('uncaughtException', function (err) {
-    console.log(err)
-})
+// process.on('uncaughtException', function (err) {
+//     console.log(err)
+// })
