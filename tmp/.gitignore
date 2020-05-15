@@ -107,4 +107,4 @@ dist
 dist
 
 # sessions
-sessions
+session-store.db

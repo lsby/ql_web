@@ -2,6 +2,8 @@ var path = require('path')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var { CleanWebpackPlugin } = require('clean-webpack-plugin')
 var fs = require('fs')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const webpack = require('webpack')
 
 var 对象混合 = 对象1 => 对象2 => {
     var r = {}
@@ -35,19 +37,27 @@ var plugins = 页面.map(a => new HtmlWebpackPlugin({
 }))
 plugins = [
     ...plugins,
+    new webpack.NoEmitOnErrorsPlugin(),
     new CleanWebpackPlugin(),
 ]
 
+if (process.env.analyz == 'true') {
+    plugins.push(new BundleAnalyzerPlugin())
+}
+
 var output = {
-    filename: '[name].[chunkhash].bundle.js',
+    filename: '[name].[hash].bundle.js',
     path: path.resolve(__dirname, '../dist'),
     publicPath: '/',
 }
 
 var externals = {
-    fs: { commonjs: 'fs', commonjs2: 'fs', amd: 'fs', root: 'fs' },
-    path: { commonjs: 'path', commonjs2: 'path', amd: 'path', root: 'path' },
-    request: { commonjs: 'request', commonjs2: 'request', amd: 'request', root: 'request' },
+    // "jquery": '$',
+    // 'vue/dist/vue.js': 'Vue',
+    // 'socket.io-client/dist/socket.io.js': 'io',
+    // 'fs': { commonjs: 'fs', commonjs2: 'fs' },
+    // 'path': { commonjs: 'path', commonjs2: 'path' },
+    // 'request': { commonjs: 'request', commonjs2: 'request' },
 }
 
 var webpack_module = {
@@ -63,7 +73,6 @@ var webpack_module = {
         { test: /\.(eot|ttf|woff|woff2)$/i, loader: 'url-loader?limit=8192&name=fonts/[name].[ext]?[hash]' },
     ]
 }
-
 module.exports = {
     entry,
     plugins,

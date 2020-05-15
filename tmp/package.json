@@ -3,23 +3,25 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start_node": "node ./node_modules/cross-env/src/bin/cross-env NODE_ENV=production PORT=80 node -r esm ./app/main.js",
-    "start": "node ./node_modules/cross-env/src/bin/cross-env NODE_ENV=production PORT=80 node ./node_modules/pm2/bin/pm2 --node-args=\"-r esm\" start node -e ./logs/error.log -l ./logs/out.log --name ql_web ./app/main.js",
-    "restart": "node ./node_modules/pm2/bin/pm2 restart ql_web",
-    "stop": "node ./node_modules/pm2/bin/pm2 stop ql_web",
-    "delete": "node ./node_modules/pm2/bin/pm2 delete ql_web",
-    "list": "node ./node_modules/pm2/bin/pm2 list",
-    "logs": "node ./node_modules/pm2/bin/pm2 logs",
-    "dev": "node ./node_modules/cross-env/src/bin/cross-env NODE_ENV=development PORT=3000 node ./node_modules/gulp/bin/gulp",
-    "build": "node ./node_modules/webpack/bin/webpack --config ./webpack/webpack.prod.js",
+    "start_node": "cross-env NODE_ENV=production PORT=80 node -r esm ./app/main.js",
+    "start": "cross-env NODE_ENV=production PORT=80 pm2 --node-args=\"-r esm\" start node -e ./logs/error.log -l ./logs/out.log --name ql_web ./app/main.js",
+    "restart": "pm2 restart ql_web",
+    "stop": "pm2 stop ql_web",
+    "delete": "pm2 delete ql_web",
+    "list": "pm2 list",
+    "logs": "pm2 logs",
+    "dev": "cross-env NODE_ENV=development PORT=3000 gulp",
+    "build": "webpack --config ./webpack/webpack.prod.js",
     "docker_build": "docker build -t ql_web .",
     "docker_start": "docker-compose up -d --remove-orphans && docker-compose logs -f --tail=\"100\"",
     "docker_stop": "docker-compose stop",
     "docker_log": "docker-compose logs -f --tail=\"100\"",
-    "docker_rm": "docker-compose stop && docker-compose rm -f"
+    "docker_rm": "docker-compose stop && docker-compose rm -f",
+    "analyz": "cross-env NODE_ENV=development PORT=3000 analyz=true gulp"
   },
   "dependencies": {
     "bootstrap": "^4.4.1",
+    "connect-loki": "^1.1.0",
     "cookie-parser": "~1.4.4",
     "core-js": "^3.6.4",
     "cross-env": "^7.0.2",
@@ -28,10 +30,10 @@
     "http-errors": "~1.6.3",
     "jquery": "^3.4.1",
     "morgan": "~1.9.1",
-    "session-file-store": "^1.4.0",
     "socket.io": "^2.3.0",
     "socket.io-client": "^2.3.0",
-    "vue": "^2.6.11"
+    "vue": "^2.6.11",
+    "webpack-hot-middleware": "^2.25.0"
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
@@ -53,8 +55,10 @@
     "style-loader": "^1.2.1",
     "url-loader": "^4.0.0",
     "webpack": "^4.43.0",
+    "webpack-bundle-analyzer": "^3.7.0",
     "webpack-cli": "^3.3.11",
     "webpack-dev-middleware": "^3.7.2",
+    "webpack-dev-server": "^3.11.0",
     "webpack-merge": "^4.2.2"
   }
 }

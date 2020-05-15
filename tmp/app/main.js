@@ -11,13 +11,9 @@ import route_api from '../api/route_api.js'
 import socket_event from '../api/socket_event.js'
 import urlEncodeChinese from './urlEncodeChinese.js'
 import config from '../config/app.js'
-import webpack from 'webpack'
-import webpackDevMiddleware from 'webpack-dev-middleware'
-import webpackConfig from '../webpack/webpack.common.js'
-import webpackConfigDev from '../webpack/webpack.dev.js'
-import sessionFileStore from 'session-file-store'
+import connectLoki from 'connect-loki'
 
-var FileStore = sessionFileStore(expressSession)
+var LokiStore = connectLoki(expressSession)
 var __filename = fileURLToPath(import.meta.url)
 var __dirname = path.dirname(__filename)
 
@@ -40,7 +36,7 @@ var session = expressSession({
     saveUninitialized: true,
     autoSave: true,
     resave: true,
-    store: new FileStore,
+    store: new LokiStore(),
     cookie: { maxAge: null, httpOnly: true },
 })
 app.use(session)
@@ -74,13 +70,16 @@ io.on('connection', function (socket) {
     })
 })
 
-console.log('以 ' + process.env.NODE_ENV + ' 模式启动')
-if (process.env.NODE_ENV == 'development')
-    app.use(webpackDevMiddleware(webpack(webpackConfigDev), { publicPath: webpackConfig.output.publicPath }))
-else if (process.env.NODE_ENV == 'production')
-    app.use('/', express.static(path.join(__dirname, '../dist')))
-else
-    throw '意外的模式:' + process.env.NODE_ENV
+// dist
+app.use('/', express.static(path.join(__dirname, '../dist')))
+
+// 库
+app.use('/lib/jquery', express.static(path.join(__dirname, '../node_modules/jquery')))
+app.use('/lib/vue', express.static(path.join(__dirname, '../node_modules/vue')))
+app.use('/lib/bootstrap', express.static(path.join(__dirname, '../node_modules/bootstrap')))
+app.use('/lib/popper.js', express.static(path.join(__dirname, '../node_modules/popper.js')))
+
+// api
 app.use('/api', route_api)
 
 app.use(function (req, res, next) {
