@@ -1,7 +1,8 @@
 import express from 'express'
 var router = express.Router()
 
-router.post('/强制生成cookie', function (req, res, next) {
+router.post('/初始化session', function (req, res, next) {
+  req.session.userid = req.sessionID
   res.end()
 })
 

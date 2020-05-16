@@ -6,7 +6,7 @@ var socket
 var app
 
 export var 初始化session = _ =>
-    new Promise((res, req) => $.post('/api/强制生成cookie', {}, _ => res()))
+    new Promise((res, req) => $.post('/api/初始化session', {}, _ => res()))
 export var 初始化io = _ => { socket = io() }
 export var 提交 = 名称 => 参数 => socket.emit(名称, 参数)
 export var 监听 = 名称 => 函数 => socket.on(名称, 函数)
