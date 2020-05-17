@@ -1,5 +1,4 @@
 var nodemon = require('gulp-nodemon')
-var fs = require('fs')
 var webpack = require('webpack')
 var { watch } = require('gulp')
 var WebpackDevServer = require("webpack-dev-server")
