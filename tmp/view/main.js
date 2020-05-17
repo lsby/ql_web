@@ -30,6 +30,7 @@ var main = async _ => {
             Vue.prototype.$socket = socket
             Vue.prototype.$ws提交 = 名称 => 参数 => socket.emit(名称, 参数)
             Vue.prototype.$ws监听 = 名称 => 函数 => socket.on(名称, 函数)
+            Vue.prototype.$ws停止监听 = 名称 => socket.off(名称)
             Vue.prototype.$post = post
             Vue.prototype.$提交x修改 = 名称 => 参数 => store.commit(名称, 参数)
             Vue.prototype.$提交x异步修改 = 名称 => 参数 => store.dispatch(名称, 参数)
