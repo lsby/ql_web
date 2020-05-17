@@ -1,6 +1,8 @@
 import VueRouter from 'vue-router'
 import { getDir, 副作用 } from '../../lib/index'
 
+// TODO 绝对路径形式
+
 // 读入页面
 // 按页面生成路由
 // TODO 按页面层级自动生成路由 动态路由

@@ -1,7 +1,7 @@
 <template>
   <div>
     <transition :name="transitionName">
-      <router-view class="Router"></router-view>
+      <router-view id="router-view" class="Router"></router-view>
     </transition>
   </div>
 </template>
@@ -15,9 +15,12 @@ export default {
   },
   watch: {
     $route(to, from) {
+      document.getElementById("router-view").style.position = "absolute";
+      document.getElementById("router-view").style.width = "100%";
       const toDepth = to.path.split("/").filter(a => a != "").length;
       const fromDepth = from.path.split("/").filter(a => a != "").length;
       this.transitionName = toDepth < fromDepth ? "slide-right" : "slide-left";
+      document.getElementById("router-view").style.position = "none";
     }
   }
 };
@@ -25,8 +28,6 @@ export default {
 
 <style scoped>
 .Router {
-  position: absolute;
-  width: 100%;
   transition: all 0.8s ease;
 }
 

@@ -2,16 +2,13 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Vuex from 'vuex'
 import io from "socket.io-client/dist/socket.io.js"
-import $ from 'jquery'
 import app from './app.vue'
 import getStore from './store/index'
 import getRoute from './route/index'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
-
-// 常用函数
-var post = url => data => new Promise((res, req) => $.post(url, data, data => res(data)))
+import { post } from './lib/index'
 
 var main = async _ => {
     await post('/api/初始化session')({})
