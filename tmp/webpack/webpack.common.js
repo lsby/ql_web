@@ -25,6 +25,7 @@ module.exports = {
         // 'request': { commonjs: 'request', commonjs2: 'request', amd: 'request', root: 'request' },
     },
     plugins: [
+        new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             title: 'index',
             template: path.join(__dirname, '../view/index.html'),
@@ -33,7 +34,6 @@ module.exports = {
         new VueLoaderPlugin(),
         new webpack.NoEmitOnErrorsPlugin(),
         process.env.analyz == 'true' ? new BundleAnalyzerPlugin() : null,
-        new CleanWebpackPlugin(),
     ].filter(a => a != null),
     module: {
         rules: [

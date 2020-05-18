@@ -36,9 +36,7 @@ var main = async _ => {
     new Vue({
         store,
         router,
-        components: {
-            app
-        }
+        components: { app }
     }).$mount('#app')
 }
 
