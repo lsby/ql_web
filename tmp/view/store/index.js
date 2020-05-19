@@ -1,31 +1,23 @@
 import Vuex from 'vuex'
-import 子模块 from './子模块'
-import 日志模块 from './日志模块'
+import { getDir } from '../../lib/index'
 
+var 模块们 = (_ => {
+    var c = getDir(require.context('./', true, /.js$/))
+    delete c.index
+    return c
+})()
+// TODO vuex热重载
 var store = {
     strict: process.env.NODE_ENV !== 'production',
     state: {
-        全局变量: 0
-    },
-    getters: {
-        全局计算属性(state) {
-            return state.全局变量 + 1
-        }
+        标题: ''
     },
     mutations: {
-        修改全局变量(state) {
-            state.全局变量++
+        更新数据(state, obj) {
+            Object.keys(obj).forEach(name => state[name] = obj[name])
         }
     },
-    actions: {
-        异步修改全局变量(context) {
-            context.commit('修改全局变量')
-        }
-    },
-    modules: {
-        子模块,
-        日志模块,
-    }
+    modules: 模块们
 }
 
 export default _ => new Vuex.Store(store)

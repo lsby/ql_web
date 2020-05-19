@@ -1,9 +1,9 @@
 var path = require('path')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-const webpack = require('webpack')
-const VueLoaderPlugin = require('vue-loader/lib/plugin')
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+var webpack = require('webpack')
+var VueLoaderPlugin = require('vue-loader/lib/plugin')
 
 // TODO 公用css提取 vue的css提取
 // TODO vendors.bundle.js 文件过大

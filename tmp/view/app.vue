@@ -15,12 +15,13 @@ export default {
   },
   watch: {
     $route(to, from) {
-      document.getElementById("router-view").style.position = "absolute";
-      document.getElementById("router-view").style.width = "100%";
-      const toDepth = to.path.split("/").filter(a => a != "").length;
-      const fromDepth = from.path.split("/").filter(a => a != "").length;
+      var st = document.getElementById("router-view").style;
+      st.position = "absolute";
+      st.width = "100%";
+      var toDepth = to.path.split("/").filter(a => a != "").length;
+      var fromDepth = from.path.split("/").filter(a => a != "").length;
       this.transitionName = toDepth < fromDepth ? "slide-right" : "slide-left";
-      document.getElementById("router-view").style.position = "none";
+      st.position = "none";
     }
   }
 };

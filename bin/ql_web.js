@@ -1,8 +1,8 @@
 import fs from 'fs'
 import path from 'path'
 import { fileURLToPath } from 'url'
-const __filename = fileURLToPath(import.meta.url)
-const __dirname = path.dirname(__filename)
+var __filename = fileURLToPath(import.meta.url)
+var __dirname = path.dirname(__filename)
 
 var 命令所在目录 = process.cwd()
 var 模板目录 = path.join(__dirname, '../tmp')

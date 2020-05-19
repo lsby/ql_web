@@ -24,13 +24,24 @@ var main = async _ => {
 
     Vue.use({
         install: function (Vue, options) {
-            Vue.prototype.$socket = socket
-            Vue.prototype.$ws提交 = 名称 => 参数 => socket.emit(名称, 参数)
-            Vue.prototype.$ws监听 = 名称 => 函数 => socket.on(名称, 函数)
-            Vue.prototype.$ws停止监听 = 名称 => socket.off(名称)
             Vue.prototype.$post = post
-            Vue.prototype.$提交x修改 = 名称 => 参数 => store.commit(名称, 参数)
-            Vue.prototype.$提交x异步修改 = 名称 => 参数 => store.dispatch(名称, 参数)
+            Vue.prototype.$数据 = store.state
+            Vue.prototype.$socket = socket
+
+            Vue.prototype.$ws = {}
+            Vue.prototype.$ws.提交 = 名称 => 参数 => socket.emit(名称, 参数)
+            Vue.prototype.$ws.发送 = Vue.prototype.$ws.提交
+            Vue.prototype.$ws.监听 = 名称 => 函数 => socket.on(名称, 函数)
+            Vue.prototype.$ws.停止监听 = 名称 => socket.off(名称)
+
+            Vue.prototype.$x = {}
+            Vue.prototype.$x.提交更新 = 名称 => 参数 => store.commit(名称, 参数)
+            Vue.prototype.$x.提交异步更新 = 名称 => 参数 => store.dispatch(名称, 参数)
+            Vue.prototype.$x.更新数据 = 模块 => {
+                if (模块 == '' || 模块 == '/')
+                    return Vue.prototype.$x.提交更新(`更新数据`)
+                return Vue.prototype.$x.提交更新(`${模块}/更新数据`)
+            }
         }
     })
     new Vue({

@@ -4,6 +4,9 @@ var store = {
         日志: '你好世界'
     },
     mutations: {
+        更新数据(state, obj) {
+            Object.keys(obj).forEach(name => state[name] = obj[name])
+        },
         添加日志(state, str) {
             state.日志 = state.日志.split("\n");
             state.日志.unshift(str);
