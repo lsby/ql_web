@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser'
 import morgan from 'morgan'
 import { fileURLToPath } from 'url'
 import http from 'http'
+import fs from 'fs'
 import socketio from 'socket.io'
 import expressSession from 'express-session'
 import route_api from '../api/route_api.js'
@@ -12,6 +13,7 @@ import socket_event from '../api/socket_event.js'
 import urlEncodeChinese from './urlEncodeChinese.js'
 import config from '../config/app.js'
 import connectLoki from 'connect-loki'
+import ReactDOMServer from 'react-dom/server'
 
 var LokiStore = connectLoki(expressSession)
 var __filename = fileURLToPath(import.meta.url)

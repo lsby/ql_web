@@ -4,7 +4,8 @@
         "sessions/*",
         "**/.html",
         "dist/**",
-        "**/session-store.db"
+        "**/session-store.db",
+        "**/view/**"
     ],
     "script": "./app/main.js",
     "verbose": true,
