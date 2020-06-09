@@ -1,23 +1,61 @@
-import React from "react"
-import ReactDOM from "react-dom"
-import 'antd/dist/antd.css'
-
+import app from './app.vue'
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import Vuex from 'vuex'
+import ViewUI from 'view-design'
+import 'view-design/dist/styles/iview.css'
+import 'view-design/dist/styles/fonts/ionicons.woff2'
 import io from "socket.io-client/dist/socket.io.js"
-import 'bootstrap/dist/css/bootstrap.css'
+import getStore from './store/index'
+import getRoute from './route/index'
 import { post } from './lib/index'
+import { getDir } from "@lib/index"
+import lodash from 'lodash'
 
-import index from "./page/index"
+var 组件们 = Object.values(getDir(require.context('./components', true, /.vue$/)))
+var 布局们 = Object.values(getDir(require.context('./layout', true, /.vue$/)))
 
-var socket
 var main = async _ => {
     await post('/api/初始化session')({})
-    if (!socket)
-        socket = io()
-    ReactDOM.render(index, document.getElementById("root"))
+
+    Vue.use(Vuex)
+    Vue.use(VueRouter)
+    Vue.use(ViewUI)
+
+    if (socket == null) var socket = io()
+    var store = getStore()
+    var router = getRoute()
+
+    Vue.use({
+        install: function (Vue, options) {
+            Vue.prototype.$post = post
+            Vue.prototype.$socket = socket
+
+            Vue.prototype.$深克隆 = 值 => lodash.cloneDeep(值)
+
+            Vue.prototype.$ws = {}
+            Vue.prototype.$ws.提交 = 名称 => 参数 => socket.emit(名称, 参数)
+            Vue.prototype.$ws.发送 = Vue.prototype.$ws.提交
+            Vue.prototype.$ws.监听 = 名称 => 函数 => socket.on(名称, 函数)
+            Vue.prototype.$ws.停止监听 = 名称 => socket.off(名称)
+        }
+    })
+
+    组件们.forEach(obj => Vue.component(obj.name, obj));
+    布局们.forEach(obj => Vue.component(obj.name, obj));
+
+    new Vue({
+        store,
+        router,
+        components: { app }
+    }).$mount('#app')
+
+    if (module.hot) {
+        module.hot.accept()
+        module.hot.accept("./store/index.js", () => {
+            window.reload()
+        })
+    }
 }
+
 main()
-
-if (module.hot)
-    module.hot.accept()
-
-export { socket }
