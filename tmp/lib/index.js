@@ -11,3 +11,8 @@ export var 安全同步运行 = (函数, 异常回调) => {
         return await 函数(...a).catch(e => 异常回调(...a)(e))
     }
 }
+export var 异常 = (...a) => {
+    a = a.map(a => a.toString())
+    console.error(...a)
+    throw a.join(' ')
+}

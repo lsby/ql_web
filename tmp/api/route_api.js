@@ -1,6 +1,6 @@
-import { 安全同步运行 } from '../lib/index';
+import { 安全同步运行, 异常 } from '../lib/index';
 import express from 'express'
-var router = express.Router();
+var router = express.Router()
 
 // 使用 req.session 即可访问 session
 // 使用 req.sessionID 即可访问 sessionID
