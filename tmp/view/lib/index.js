@@ -1,7 +1,6 @@
 import $ from 'jquery'
 var 调试模式 = process.env.NODE_ENV !== 'production'
 
-export var Y = s => s(s)
 export var post = url => data => new Promise((res, req) => {
     if (调试模式) console.log(url, data)
     try {

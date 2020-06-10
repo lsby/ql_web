@@ -33,6 +33,10 @@ var main = async _ => {
 
             Vue.prototype.$深克隆 = 值 => lodash.cloneDeep(值)
 
+            Vue.prototype.$路由 = {}
+            Vue.prototype.$路由.跳转 = 页面 => router.push(页面)
+            Vue.prototype.$路由.后退 = _ => window.history.length > 1 ? router.go(-1) : router.push('/')
+
             Vue.prototype.$ws = {}
             Vue.prototype.$ws.提交 = 名称 => 参数 => socket.emit(名称, 参数)
             Vue.prototype.$ws.发送 = Vue.prototype.$ws.提交

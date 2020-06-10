@@ -6,7 +6,6 @@ export default {
     disconnect: socket => msg => console.log('前端已断开'),
     ws事件: socket => msg => {
         console.log(msg)
-        socket.session = socket.session || {}
         socket.提交('写日志')(`这是 ws 的响应, 你的 sessionID 是 ${socket.request.sessionID}`)
         socket.提交('写日志')(`这是 ws 的响应, 你的 session.userid 是 ${socket.session.userid}`)
     },

@@ -65,22 +65,13 @@ io.on('connection', function (socket) {
         Reflect.ownKeys(socket_event).forEach(key => socket.on(key, (...args) => {
             if (session_req_io_map[sessionID].get_session)
                 socket.session = session_req_io_map[sessionID].get_session()
+            socket.session = socket.session || {}
             socket_event[key](socket)(...args)
         }))
     })
 })
 
-// dist
 app.use('/', express.static(path.join(__dirname, '../dist')))
-
-// 库
-app.use('/lib/jquery', express.static(path.join(__dirname, '../node_modules/jquery')))
-app.use('/lib/vue', express.static(path.join(__dirname, '../node_modules/vue')))
-app.use('/lib/bootstrap', express.static(path.join(__dirname, '../node_modules/bootstrap')))
-app.use('/lib/popper.js', express.static(path.join(__dirname, '../node_modules/popper.js')))
-app.use('/lib/socket.io-client', express.static(path.join(__dirname, '../node_modules/socket.io-client')))
-
-// api
 app.use('/api', route_api)
 
 app.use(function (req, res, next) {

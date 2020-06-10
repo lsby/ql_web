@@ -49,7 +49,6 @@ export default function (opt) {
 
         Object.keys(opt.数据).forEach(name => this.$watch(_ => this[name], (newVal, oldVal) => {
             // console.log('因为', name, '从', oldVal, '改变为', newVal, '所以', '发送事件', `update:${r._前缀 + name}`, newVal)
-            if (opt.更新事件钩子 != null) opt.更新事件钩子.bind(self)(name, newVal, oldVal)
             this.$emit(`update:${r._前缀 + name}`, lodash.cloneDeep(newVal))
         }, {
             deep: true,
