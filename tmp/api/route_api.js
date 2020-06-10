@@ -2,6 +2,8 @@ import { 安全同步运行, 异常 } from '../lib/index'
 import express from 'express'
 var router = express.Router()
 
+// TODO 每个路由都写到路径里 自动读取
+
 // 使用 req.session 即可访问 session
 // 使用 req.sessionID 即可访问 sessionID
 // 使用 req.socketio 即可访问 socketio
