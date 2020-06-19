@@ -1,7 +1,7 @@
 <template>
   <rongqi into_主轴对齐方式="中点" into_交叉轴对齐方式="中点" into_多轴对齐方式="中点">
     <xiangmu into_宽度="100%" into_文字对齐方式="中">
-      <button @click="$路由.跳转('demo')">ql_web</button>
+      <Button type="primary" @click="$路由.跳转('demo')">ql_web</Button>
     </xiangmu>
   </rongqi>
 </template>

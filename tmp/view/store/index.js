@@ -1,13 +1,9 @@
 import Vuex from 'vuex'
 import { getDir } from '../../lib/index'
 
-var 子模块们 = (_ => {
-    var c = getDir(require.context('./', true, /.js$/))
-    delete c.index
-    return c
-})()
-
+var 子模块们 = getDir(require.context('./', true, /.js$/)).filter(a => a.name != 'index')
 var store = {
+    namespaced: true,
     strict: process.env.NODE_ENV !== 'production',
     state: {},
     mutations: {
@@ -16,7 +12,7 @@ var store = {
         },
     },
     actions: {},
-    modules: 子模块们
+    modules: 子模块们.map(a => ({ [a.name]: a.obj })).reduce((s, a) => Object.assign(s, a))
 }
 
 export default _ => new Vuex.Store(store)

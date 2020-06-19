@@ -51,6 +51,7 @@ module.exports = {
     resolve: {
         alias: {
             'vue': 'vue/dist/vue.esm.js',
+            "@assets": path.join(__dirname, '../view/assets'),
             "@components": path.join(__dirname, '../view/components'),
             "@layout": path.join(__dirname, '../view/layout'),
             "@webLib": path.join(__dirname, '../view/lib'),

@@ -33,6 +33,11 @@ var main = async _ => {
 
             Vue.prototype.$深克隆 = 值 => lodash.cloneDeep(值)
 
+            Vue.prototype.$Vuex = {}
+            Vue.prototype.$Vuex.数据 = store.state
+            Vue.prototype.$Vuex.突变 = store.commit
+            Vue.prototype.$Vuex.异步突变 = store.dispatch
+
             Vue.prototype.$路由 = {}
             Vue.prototype.$路由.跳转 = 页面 => router.push(页面)
             Vue.prototype.$路由.后退 = _ => window.history.length > 1 ? router.go(-1) : router.push('/')
@@ -45,8 +50,8 @@ var main = async _ => {
         }
     })
 
-    组件们.forEach(obj => Vue.component(obj.name, obj));
-    布局们.forEach(obj => Vue.component(obj.name, obj));
+    组件们.forEach(obj => Vue.component(obj.obj.name, obj.obj));
+    布局们.forEach(obj => Vue.component(obj.obj.name, obj.obj));
 
     new Vue({
         store,
