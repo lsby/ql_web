@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start_node": "cross-env NODE_ENV=production PORT=80 node -r esm ./app/main.js",
-    "start": "cross-env NODE_ENV=production PORT=80 pm2 --node-args=\"-r esm\" start node -e ./logs/error.log -l ./logs/out.log --name ql_web ./app/main.js",
+    "start": "cross-env NODE_ENV=production PORT=80 pm2 set pm2-logrotate:max_size 10M && pm2 --node-args=\"-r esm\" start node -e ./logs/error.log -l ./logs/out.log --name ql_web ./app/main.js",
     "restart": "pm2 restart ql_web",
     "stop": "pm2 stop ql_web",
     "delete": "pm2 delete ql_web",
