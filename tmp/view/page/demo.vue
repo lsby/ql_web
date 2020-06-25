@@ -1,6 +1,6 @@
 <template>
-  <rongqi into_主轴对齐方式="起点" into_交叉轴对齐方式="起点" into_多轴对齐方式="起点">
-    <xiangmu into_宽度="100%" into_文字对齐方式="左">
+  <shangxia into_上放大比例="0" into_下放大比例="1">
+    <template #上>
       <anniuzu
         :into_描述="[
           {名称:'post测试'},
@@ -11,12 +11,18 @@
         @ws测试="ws测试()"
         @后退="$路由.后退()"
       ></anniuzu>
-    </xiangmu>
-    <div>--------------------------------------</div>
-    <xiangmu into_宽度="100%" into_文字对齐方式="左" :into_放大比例="1">
-      <rizhi :into_内容="日志"></rizhi>
-    </xiangmu>
-  </rongqi>
+    </template>
+    <template #下>
+      <zuoyou into_高度="100%" into_容器高度="100%" into_左宽度="50%" into_右宽度="50%">
+        <template #左>
+          <rizhi :into_内容="日志" style="height:100%;"></rizhi>
+        </template>
+        <template #右>
+          <rizhi :into_内容="日志" style="height:100%;"></rizhi>
+        </template>
+      </zuoyou>
+    </template>
+  </shangxia>
 </template>
 
 <script>
