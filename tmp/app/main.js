@@ -53,6 +53,7 @@ app.use(function (req, res, next) {
 
 // socket.io
 var io = socketio(server, { cookie: false })
+var io用户池 = []
 io.on('connection', function (socket) {
     session(socket.request, {}, function () {
         var sessionID = socket.request.sessionID
@@ -60,9 +61,14 @@ io.on('connection', function (socket) {
         session_req_io_map[sessionID].socketio = socket
 
         socket.提交 = 名称 => 值 => socket.emit(名称, 值)
+        socket.发送 = socket.提交
+        socket.发送给所有用户 = 名称 => 值 => io用户池.forEach(a => a.socket.提交(名称)(值))
+        socket.获得用户池 = _ => io用户池
 
+        io用户池.push({ id: socket.id, socket })
         if (socket_event.connection != null) socket_event.connection(socket)()
         Reflect.ownKeys(socket_event).forEach(key => socket.on(key, (...args) => {
+            if (key == 'disconnect') io用户池 = io用户池.filter(a => a.id != socket.id)
             if (session_req_io_map[sessionID].get_session)
                 socket.session = session_req_io_map[sessionID].get_session()
             socket.session = socket.session || {}
