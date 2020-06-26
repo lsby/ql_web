@@ -11,4 +11,4 @@ function urlEncodeChinese(req, res, next) {
     next()
 }
 
-export default urlEncodeChinese 
+export default urlEncodeChinese
