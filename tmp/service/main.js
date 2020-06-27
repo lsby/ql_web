@@ -94,7 +94,7 @@ app.use(function (err, req, res) {
 })
 
 server.listen(port)
-server.on('listening', (port => _ => console.log(`请访问 http://127.0.0.1:${port}`))(port))
+server.on('listening', (port => _ => console.log(`后端已启动 请访问 http://127.0.0.1:${port}`))(port))
 server.on('error', error => {
     if (error.code == 'EACCES') throw '需要提升权限'
     if (error.code == 'EADDRINUSE') throw '端口被占用'

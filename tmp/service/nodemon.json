@@ -1,19 +1,11 @@
 {
     "restartable": "rs",
     "ignore": [
-        "sessions/*",
-        "**/.html",
-        "dist/**",
-        "**/session-store.db",
-        "**/view/**"
+        "*"
     ],
-    "script": "./app/main.js",
-    "verbose": true,
+    "script": "./dist/service/main.js",
+    "verbose": false,
     "watch": [],
-    "ext": "js,mjs,json",
-    "nodeArgs": [
-        "--inspect",
-        "-r",
-        "esm"
-    ]
+    "ext": "",
+    "nodeArgs": []
 }
