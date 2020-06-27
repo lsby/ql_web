@@ -7,7 +7,7 @@
         "pm2_start": "pm2 set pm2-logrotate:max_size 10M && cross-env NODE_ENV=production PORT=80 pm2 start node -e ./logs/error.log -l ./logs/out.log --name ql_web ./dist/service/main.js",
         "pm2_restart": "pm2 restart ql_web",
         "pm2_stop": "pm2 stop ql_web",
-        "pm2_rm": "npm run pm2_停止 && pm2 delete ql_web",
+        "pm2_rm": "npm run pm2_stop && pm2 delete ql_web",
         "pm2_list": "pm2 list",
         "pm2_log": "pm2 logs",
         "docker_build": "docker build -t ql_web .",
