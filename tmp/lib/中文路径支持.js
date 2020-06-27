@@ -2,7 +2,7 @@
 
 import url from 'url'
 
-function urlEncodeChinese(req, res, next) {
+function 中文路径支持(req, res, next) {
     var decodeurlchinese = url.parse(req.url)
     var tmpdecodepath = decodeurlchinese.pathname
     decodeurlchinese.pathname = decodeURIComponent(decodeurlchinese.pathname)
@@ -11,4 +11,4 @@ function urlEncodeChinese(req, res, next) {
     next()
 }
 
-export default urlEncodeChinese
+export default 中文路径支持

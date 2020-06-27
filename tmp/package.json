@@ -3,21 +3,24 @@
     "version": "1.0.0",
     "private": true,
     "scripts": {
-        "start_node": "cross-env NODE_ENV=production PORT=80 node -r esm ./app/main.js",
-        "start": "cross-env NODE_ENV=production PORT=80 pm2 set pm2-logrotate:max_size 10M && pm2 --node-args=\"-r esm\" start node -e ./logs/error.log -l ./logs/out.log --name ql_web ./app/main.js",
-        "restart": "pm2 restart ql_web",
-        "stop": "pm2 stop ql_web",
-        "delete": "pm2 delete ql_web",
-        "list": "pm2 list",
-        "logs": "pm2 logs",
-        "dev": "cross-env NODE_ENV=development PORT=3000 gulp",
-        "build": "webpack --config ./webpack/webpack.prod.js",
-        "docker_build": "docker build -t ql_web .",
-        "docker_start": "docker-compose up -d --remove-orphans && docker-compose logs -f --tail=\"100\"",
-        "docker_stop": "docker-compose stop",
-        "docker_log": "docker-compose logs -f --tail=\"100\"",
-        "docker_rm": "docker-compose stop && docker-compose rm -f",
-        "analyz": "cross-env NODE_ENV=development PORT=3000 analyz=true webpack --config ./webpack/webpack.prod.js"
+        "dev": "npm run 开发模式",
+        "node_启动": "cross-env NODE_ENV=production PORT=80 node -r esm ./app/main.js",
+        "pm2_启动": "cross-env NODE_ENV=production PORT=80 pm2 set pm2-logrotate:max_size 10M && pm2 --node-args=\"-r esm\" start node -e ./logs/error.log -l ./logs/out.log --name ql_web ./app/main.js",
+        "pm2_重启": "pm2 restart ql_web",
+        "pm2_停止": "pm2 stop ql_web",
+        "pm2_删除": "npm run pm2_停止 && pm2 delete ql_web",
+        "pm2_列表": "pm2 list",
+        "pm2_日志": "pm2 logs",
+        "docker_编译": "docker build -t ql_web .",
+        "docker_启动": "docker-compose up -d --remove-orphans && docker-compose logs -f --tail=\"100\"",
+        "docker_停止": "docker-compose stop",
+        "docker_日志": "docker-compose logs -f --tail=\"100\"",
+        "docker_删除": "docker-compose stop && docker-compose rm -f",
+        "开发模式": "cross-env NODE_ENV=development PORT=3000 gulp",
+        "前端_编译": "webpack --config ./webpack/webpack.prod.js",
+        "前端_分析": "cross-env NODE_ENV=development PORT=3000 analyz=true webpack --config ./webpack/webpack.prod.js",
+        "后端_编译": "",
+        "后端_分析": ""
     },
     "dependencies": {
         "connect-loki": "^1.1.0",
@@ -64,6 +67,7 @@
         "webpack-bundle-analyzer": "^3.7.0",
         "webpack-cli": "^3.3.11",
         "webpack-dev-server": "^3.11.0",
-        "webpack-merge": "^4.2.2"
+        "webpack-merge": "^4.2.2",
+        "webpack-node-externals": "^1.7.2"
     }
 }

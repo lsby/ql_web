@@ -1,4 +1,4 @@
-import app from './app.vue'
+import lodash from 'lodash'
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Vuex from 'vuex'
@@ -6,11 +6,11 @@ import ViewUI from 'view-design'
 import 'view-design/dist/styles/iview.css'
 import 'view-design/dist/styles/fonts/ionicons.woff2'
 import io from "socket.io-client/dist/socket.io.js"
+import app from './app.vue'
+import { post } from '@lib/post'
+import { getDir } from "@lib/index"
 import getStore from './store/index'
 import getRoute from './route/index'
-import { post } from './lib/index'
-import { getDir } from "@lib/index"
-import lodash from 'lodash'
 
 var 组件们 = Object.values(getDir(require.context('./components', true, /.vue$/)))
 var 布局们 = Object.values(getDir(require.context('./layout', true, /.vue$/)))

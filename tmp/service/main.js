@@ -1,23 +1,20 @@
 import createError from 'http-errors'
 import express from 'express'
-import path from 'path'
 import cookieParser from 'cookie-parser'
 import morgan from 'morgan'
-import { fileURLToPath } from 'url'
 import http from 'http'
 import socketio from 'socket.io'
 import expressSession from 'express-session'
-import route_api from '../api/route_api.js'
-import socket_event from '../api/socket_event.js'
-import urlEncodeChinese from './urlEncodeChinese.js'
-import config from '../config/app.js'
 import connectLoki from 'connect-loki'
+import socket事件 from './socketio/socket_event'
+import 应用设置 from '@config/app'
+import 中文路径支持 from '@lib/中文路径支持'
+import { 安全同步运行, getDir } from '@lib/index'
 
 var LokiStore = connectLoki(expressSession)
-var __filename = fileURLToPath(import.meta.url)
-var __dirname = path.dirname(__filename)
+var port = 应用设置.端口
+var 路由们 = getDir(require.context('./api/', true, /.js$/))
 
-var port = config.端口
 var app = express()
 var server = http.createServer(app)
 
@@ -27,7 +24,7 @@ app.use(morgan('dev'))
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())
-app.use(urlEncodeChinese)
+app.use(中文路径支持)
 
 // session
 var session = expressSession({
@@ -66,37 +63,40 @@ io.on('connection', function (socket) {
         socket.获得用户池 = _ => io用户池
 
         io用户池.push({ id: socket.id, socket })
-        if (socket_event.connection != null) socket_event.connection(socket)()
-        Reflect.ownKeys(socket_event).forEach(key => socket.on(key, (...args) => {
+        if (socket事件.connection != null) socket事件.connection(socket)()
+        Reflect.ownKeys(socket事件).forEach(key => socket.on(key, (...args) => {
             if (key == 'disconnect') io用户池 = io用户池.filter(a => a.id != socket.id)
             if (session_req_io_map[sessionID].get_session)
                 socket.session = session_req_io_map[sessionID].get_session()
             socket.session = socket.session || {}
-            socket_event[key](socket)(...args)
+            socket事件[key](socket)(...args)
         }))
     })
 })
 
-app.use('/', express.static(path.join(__dirname, '../dist')))
-app.use('/api', route_api)
+app.use('/', express.static('./dist/web'))
+app.use('/api', (_ => {
+    var router = express.Router()
+    路由们.forEach(obj => router.post(`/${obj.name}`, 安全同步运行(obj.obj, (req, res, next) => err => {
+        console.error(err)
+        return next(err.toString())
+    })))
+    return router
+})())
 
 app.use(function (req, res, next) {
     next(createError(404))
 })
-app.use(function (err, req, res, next) {
+app.use(function (err, req, res) {
     console.log(err)
     res.status(err.status || 500)
     res.send(err)
 })
 
 server.listen(port)
-server.on('listening', (port => _ => console.log(`http://127.0.0.1:${port}`))(port))
+server.on('listening', (port => _ => console.log(`请访问 http://127.0.0.1:${port}`))(port))
 server.on('error', error => {
-    if (error.syscall !== 'listen')
-        throw error
-    if (error.code == 'EACCES')
-        throw '需要提升权限'
-    if (error.code == 'EADDRINUSE')
-        throw '端口被使用'
+    if (error.code == 'EACCES') throw '需要提升权限'
+    if (error.code == 'EADDRINUSE') throw '端口被占用'
     throw error
 })

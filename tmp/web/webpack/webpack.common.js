@@ -9,10 +9,10 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin')
 // TODO vendors.bundle.js 文件过大
 
 module.exports = {
-    entry: path.join(__dirname, '../view/main.js'),
+    entry: path.join(__dirname, '../main.js'),
     output: {
         filename: '[name].[hash].bundle.js',
-        path: path.join(__dirname, '../dist'),
+        path: path.join(__dirname, '../../dist/web'),
         publicPath: '/',
     },
     externals: {
@@ -29,7 +29,7 @@ module.exports = {
         new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
             title: 'index',
-            template: path.join(__dirname, '../view/index.html'),
+            template: path.join(__dirname, '../index.html'),
             filename: `index.html`,
         }),
         process.env.analyz == 'true' ? new BundleAnalyzerPlugin() : null,
@@ -51,12 +51,11 @@ module.exports = {
     resolve: {
         alias: {
             'vue': 'vue/dist/vue.esm.js',
-            "@assets": path.join(__dirname, '../view/assets'),
-            "@components": path.join(__dirname, '../view/components'),
-            "@layout": path.join(__dirname, '../view/layout'),
-            "@webLib": path.join(__dirname, '../view/lib'),
-            "@lib": path.join(__dirname, '../lib'),
+            "@assets": path.join(__dirname, '../assets'),
+            "@components": path.join(__dirname, '../components'),
+            "@layout": path.join(__dirname, '../layout'),
             "@page": path.join(__dirname, '../page'),
+            "@lib": path.join(__dirname, '../../lib'),
         }
     },
     optimization: {
