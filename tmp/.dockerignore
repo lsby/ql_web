@@ -3,3 +3,4 @@
 sessions
 Dockerfile
 docker-compose.yml
+session-store.db

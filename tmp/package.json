@@ -10,6 +10,7 @@
         "pm2_rm": "npm run pm2_stop && pm2 delete ql_web",
         "pm2_list": "pm2 list",
         "pm2_log": "pm2 logs",
+        "pm2_setlog": "pm2 set pm2-logrotate:max_size 10M",
         "docker_build": "docker build -t ql_web .",
         "docker_start": "docker-compose up -d --remove-orphans && npm run docker_log",
         "docker_stop": "docker-compose stop",
