@@ -8,6 +8,8 @@ bash ${work_path}/setMirror.sh
 # apt-get install libaio1 -y
 
 echo '安装npm依赖'
+# npm install -g cnpm --registry=https://registry.npm.taobao.org
+# cnpm i
 npm i
 
 echo '设置日志'
