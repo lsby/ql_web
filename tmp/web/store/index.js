@@ -1,5 +1,5 @@
 import Vuex from 'vuex'
-import { getDir } from '../../lib/index'
+import { getDir } from '@lib/index'
 
 var 子模块们 = getDir(require.context('./', true, /.js$/)).filter(a => a.name != 'index')
 var store = {

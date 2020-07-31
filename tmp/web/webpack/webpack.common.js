@@ -56,6 +56,7 @@ module.exports = {
             "@layout": path.join(__dirname, '../layout'),
             "@page": path.join(__dirname, '../page'),
             "@lib": path.join(__dirname, '../../lib'),
+            "@config": path.join(__dirname, '../../config'),
         }
     },
     optimization: {

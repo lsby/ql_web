@@ -2,6 +2,7 @@ import lodash from "lodash"
 
 export default function (opt) {
     opt.数据 = opt.数据 || {}
+    opt.注入 = opt.注入 || {}
 
     var r = {}
 
@@ -28,28 +29,36 @@ export default function (opt) {
             r[name] = obj
     })
 
-    r._前缀 = 'into_'
+    r._数据前缀 = '数据_'
+    r._注入前缀 = '注入_'
 
     r.props = {}
-    Object.keys(opt.数据).forEach(name => r.props[r._前缀 + name] = { default: _ => opt.数据[name] })
+    Object.keys(opt.数据).forEach(name => r.props[r._数据前缀 + name] = { default: _ => opt.数据[name] })
+    Object.keys(opt.注入).forEach(name => r.props[r._注入前缀 + name] = { default: _ => opt.注入[name] })
 
     r.data = function () {
-        return lodash.cloneDeep(opt.数据)
+        var rx = lodash.cloneDeep(opt.数据)
+        for (var name in opt.注入) {
+            rx[name] = this[r._注入前缀 + name] || opt.注入[name]
+        }
+        return rx
     }
 
     r._created.push(function (self) {
-        Object.keys(r.props).forEach(name => this.$watch(_ => this[name], (newVal, oldVal) => {
-            if (lodash.isEqual(this[name.substring(r._前缀.length)], newVal)) return
-            // console.log('因为', name, '从', oldVal, '改变为', newVal, '所以', '将', name.substring(r._前缀.length), '设为', newVal)
-            this[name.substring(r._前缀.length)] = lodash.cloneDeep(newVal)
-        }, {
-            deep: true,
-            immediate: true
-        }))
+        Object.keys(r.props)
+            .filter(name => name.substring(0, r._数据前缀.length) == r._数据前缀)
+            .forEach(name => this.$watch(_ => this[name], (newVal, oldVal) => {
+                if (lodash.isEqual(this[name.substring(r._数据前缀.length)], newVal)) return
+                // console.log('因为', name, '从', oldVal, '改变为', newVal, '所以', '将', name.substring(r._前缀.length), '设为', newVal)
+                this[name.substring(r._数据前缀.length)] = lodash.cloneDeep(newVal)
+            }, {
+                deep: true,
+                immediate: true
+            }))
 
         Object.keys(opt.数据).forEach(name => this.$watch(_ => this[name], (newVal, oldVal) => {
             // console.log('因为', name, '从', oldVal, '改变为', newVal, '所以', '发送事件', `update:${r._前缀 + name}`, newVal)
-            this.$emit(`update:${r._前缀 + name}`, lodash.cloneDeep(newVal))
+            this.$emit(`update:${r._数据前缀 + name}`, lodash.cloneDeep(newVal))
         }, {
             deep: true,
             immediate: false

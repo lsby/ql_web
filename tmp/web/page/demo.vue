@@ -1,8 +1,8 @@
 <template>
-  <shangxia into_上放大比例="0" into_下放大比例="1">
+  <shangxia 数据_上放大比例="0" 数据_下放大比例="1">
     <template #上>
       <anniuzu
-        :into_描述="[
+        :数据_描述="[
           {名称:'post测试'},
           {名称:'ws测试'},
           {名称:'后退'},
@@ -13,12 +13,12 @@
       ></anniuzu>
     </template>
     <template #下>
-      <zuoyou into_高度="100%" into_容器高度="100%" into_左宽度="50%" into_右宽度="50%">
+      <zuoyou 数据_高度="100%" 数据_容器高度="100%" 数据_左宽度="50%" 数据_右宽度="50%">
         <template #左>
-          <rizhi :into_内容="日志" style="height:100%;"></rizhi>
+          <rizhi :数据_内容="日志" style="height:100%;"></rizhi>
         </template>
         <template #右>
-          <rizhi :into_内容="日志" style="height:100%;"></rizhi>
+          <rizhi :数据_内容="日志" style="height:100%;"></rizhi>
         </template>
       </zuoyou>
     </template>
