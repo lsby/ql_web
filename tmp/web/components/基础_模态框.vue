@@ -10,20 +10,20 @@
 </template>
 
 <script>
-import 构造vue组件 from "@lib/构造vue组件";
+import 构造vue组件 from "@lib/前端/构造vue组件";
 
 export default 构造vue组件({
   name: "motaikuang",
   数据: {
     提示: "提示",
     宽度: "600px",
-    显示: false
+    显示: false,
   },
   methods: {
     关闭() {
       this.显示 = false;
       this.$emit("关闭");
-    }
-  }
+    },
+  },
 });
 </script>

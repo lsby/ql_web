@@ -1,27 +1,38 @@
 <template>
   <div style="height: 100%;">
     <transition :name="transitionName" style="height: 100%;">
-      <router-view id="router-view" class="Router" style="height: 100%; display: flex;"></router-view>
+      <router-view
+        id="router-view"
+        class="Router"
+        :style="`
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        `"
+      ></router-view>
     </transition>
   </div>
 </template>
 
 <script>
 export default {
+  created() {},
   data() {
     return {
-      transitionName: "slide-right"
+      transitionName: "slide-right",
     };
   },
   watch: {
     $route(to, from) {
-      document.getElementById("router-view").style.position = "absolute";
-      const toDepth = to.path.split("/").filter(a => a != "").length;
-      const fromDepth = from.path.split("/").filter(a => a != "").length;
+      var routeView = document.getElementById("router-view");
+      var toDepth = to.path.split("/").filter((a) => a != "").length;
+      var fromDepth = from.path.split("/").filter((a) => a != "").length;
+
+      routeView.style.position = "absolute";
       this.transitionName = toDepth < fromDepth ? "slide-right" : "slide-left";
-      document.getElementById("router-view").style.position = "none";
-    }
-  }
+      routeView.style.position = "none";
+    },
+  },
 };
 </script>
 

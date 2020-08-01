@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import 构造vue组件 from "@lib/构造vue组件";
+import 构造vue组件 from "@lib/前端/构造vue组件";
 
 export default 构造vue组件({
   name: "xiangmu",
@@ -35,7 +35,7 @@ export default 构造vue组件({
     项目占据的主轴空间: "auto",
     // auto是继承容器 其他值会覆盖上层容器设定
     对齐方式: "auto",
-    文字对齐方式: "auto"
+    文字对齐方式: "auto",
   },
   计算属性: {
     c_文字对齐方式() {
@@ -50,7 +50,7 @@ export default 构造vue组件({
       if (this.对齐方式 == "终点") return "flex-end";
       if (this.对齐方式 == "基线") return "baseline";
       if (this.对齐方式 == "占满") return "stretch";
-    }
-  }
+    },
+  },
 });
 </script>

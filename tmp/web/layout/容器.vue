@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import 构造vue组件 from "@lib/构造vue组件";
+import 构造vue组件 from "@lib/前端/构造vue组件";
 
 export default 构造vue组件({
   name: "rongqi",
@@ -31,7 +31,7 @@ export default 构造vue组件({
     多轴对齐方式: "占满",
     文字对齐方式: "左",
     高度: "auto",
-    宽度: "auto"
+    宽度: "auto",
   },
   函数: {},
   计算属性: {
@@ -72,7 +72,7 @@ export default 构造vue组件({
       if (this.多轴对齐方式 == "两端") return "space-between";
       if (this.多轴对齐方式 == "间隔") return "space-around";
       if (this.多轴对齐方式 == "占满") return "stretch";
-    }
-  }
+    },
+  },
 });
 </script>

@@ -7,16 +7,16 @@
 </template>
 
 <script>
-import 构造vue组件 from "@lib/构造vue组件";
+import 构造vue组件 from "@lib/前端/构造vue组件";
 
 export default 构造vue组件({
   name: "xialakuang",
   数据: {
     选项: [
       { value: "New York", label: "New York" },
-      { value: "London", label: "London" }
+      { value: "London", label: "London" },
     ],
-    值: ""
-  }
+    值: "",
+  },
 });
 </script>

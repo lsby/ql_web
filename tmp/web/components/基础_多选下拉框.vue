@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import 构造vue组件 from "@lib/构造vue组件";
+import 构造vue组件 from "@lib/前端/构造vue组件";
 
 export default 构造vue组件({
   name: "duoxuanxialakuang",
@@ -20,27 +20,27 @@ export default 构造vue组件({
     选项: [
       {
         value: "纽约",
-        label: "纽约"
+        label: "纽约",
       },
       {
         value: "伦敦",
-        label: "伦敦"
-      }
+        label: "伦敦",
+      },
     ],
-    值: []
+    值: [],
   },
   函数: {
     按钮事件() {
       if (this.c_按钮文字 == "全选")
-        return (this.值 = this.选项.map(a => a.value));
+        return (this.值 = this.选项.map((a) => a.value));
       if (this.c_按钮文字 == "清空") return (this.值 = []);
-    }
+    },
   },
   计算属性: {
     c_按钮文字() {
       if (this.选项.length != this.值.length) return "全选";
       return "清空";
-    }
-  }
+    },
+  },
 });
 </script>

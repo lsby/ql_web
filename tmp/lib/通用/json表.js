@@ -1,5 +1,4 @@
 import * as R from 'ramda'
-import lodash from 'lodash'
 
 export var 存在 = 键 => 值 => 数据 => {
     var 匹配 = 数据.filter(a => a[键] == 值)

@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import 构造vue组件 from "@lib/构造vue组件";
+import 构造vue组件 from "@lib/前端/构造vue组件";
 
 export default 构造vue组件({
   name: "zuoyou",
@@ -37,9 +37,9 @@ export default 构造vue组件({
     多轴对齐方式: "中",
     容器高度: "auto",
     主轴对齐方式: "两端",
-    换行模式: "插入下方"
+    换行模式: "插入下方",
   },
   函数: {},
-  计算属性: {}
+  计算属性: {},
 });
 </script>

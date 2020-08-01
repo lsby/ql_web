@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import 构造vue组件 from "@lib/构造vue组件";
+import 构造vue组件 from "@lib/前端/构造vue组件";
 
 export default 构造vue组件({
   name: "shangxia",
@@ -33,9 +33,9 @@ export default 构造vue组件({
     交叉轴对齐方式: "起点",
     主轴对齐方式: "起点",
     多轴对齐方式: "中",
-    文字对齐方式: "auto"
+    文字对齐方式: "auto",
   },
   函数: {},
-  计算属性: {}
+  计算属性: {},
 });
 </script>

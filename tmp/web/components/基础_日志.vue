@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import 构造vue组件 from "@lib/构造vue组件";
+import 构造vue组件 from "@lib/前端/构造vue组件";
 
 export default 构造vue组件({
   name: "rizhi",
@@ -17,9 +17,9 @@ export default 构造vue组件({
   构造函数() {},
   数据: {
     内容: ["你好, 世界!", "hello, world!"],
-    标题: "日志"
+    标题: "日志",
   },
   函数: {},
-  计算属性: {}
+  计算属性: {},
 });
 </script>

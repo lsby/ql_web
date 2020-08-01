@@ -1,4 +1,4 @@
-import getUrlParams from "get-url-params";
+import getUrlParams from "get-url-params"
 
 export default _ => {
     var get参数 = getUrlParams();

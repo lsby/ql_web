@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import 构造vue组件 from "@lib/构造vue组件";
+import 构造vue组件 from "@lib/前端/构造vue组件";
 
 export default 构造vue组件({
   name: "fenye",
@@ -23,8 +23,8 @@ export default 构造vue组件({
     当前页: 1,
     总行数: 100,
     每页条数: 50,
-    每页条数候选: [50, 100, 150, 200]
+    每页条数候选: [50, 100, 150, 200],
   },
-  函数: {}
+  函数: {},
 });
 </script>

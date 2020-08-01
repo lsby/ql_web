@@ -8,8 +8,9 @@ import expressSession from 'express-session'
 import connectLoki from 'connect-loki'
 import socket事件 from './socketio/socket_event'
 import 应用设置 from '@config/app'
-import 中文路径支持 from '@lib/中文路径支持'
-import { 安全同步运行, getDir } from '@lib/index'
+import 中文路径支持 from '@lib/后端/中文路径支持'
+import 安全同步运行 from '@lib/通用/安全同步运行'
+import getDir from "@lib/通用/getDir"
 
 var LokiStore = connectLoki(expressSession)
 var port = 应用设置.端口
@@ -45,6 +46,10 @@ app.use(function (req, res, next) {
     session_req_io_map[sessionID] = session_req_io_map[sessionID] || {}
     session_req_io_map[sessionID].get_session = _ => req.session
     req.socketio = session_req_io_map[sessionID].socketio
+    req.socket_event = Object.keys(socket事件)
+        .map(a => [{ [a]: socket事件[a](req.socketio) }])
+        .flat()
+        .reduce((s, a) => Object.assign(s, a), {})
     next()
 })
 
@@ -64,7 +69,7 @@ io.on('connection', function (socket) {
 
         io用户池.push({ id: socket.id, socket })
         if (socket事件.connection != null) socket事件.connection(socket)()
-        Reflect.ownKeys(socket事件).forEach(key => socket.on(key, (...args) => {
+        Object.keys(socket事件).forEach(key => socket.on(key, (...args) => {
             if (key == 'disconnect') io用户池 = io用户池.filter(a => a.id != socket.id)
             if (session_req_io_map[sessionID].get_session)
                 socket.session = session_req_io_map[sessionID].get_session()
