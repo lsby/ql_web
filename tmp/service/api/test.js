@@ -8,9 +8,15 @@ export default async (req, res, next) => {
     req.session.userid = req.sessionID
     req.socketio.提交('写日志')(`这是 post 的响应, 你的 sessionID 是 ${req.sessionID}`)
     req.socketio.提交('写日志')(`这是 post 的响应, 你的 session.userid 是 ${req.session.userid}`)
-    req.socket_event.提交通用数据更新({
-        路径: ['测试数据'],
-        值: '这是后端post返回的值'
-    })
+
+    // 你可以这样调用 socket_event 里的方法
+    // req.socket_event.提交通用数据更新({
+    //     路径: ['测试数据'],
+    //     值: '这是后端post返回的值'
+    // })
+
+    // 你可以直接这个这个对象的属性 它会被自动以`提交通用数据更新`发送给前端
+    req.session.通用数据.测试数据 = '这是后端post返回的值'
+
     res.send('也可以同时进行 http 返回')
 }

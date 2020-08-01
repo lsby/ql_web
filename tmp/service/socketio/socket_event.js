@@ -15,15 +15,15 @@ var r = {
         console.log('前端已断开')
     },
     socket初始化: socket => msg => {
-        socket.session.数据 = 生成监视对象(function (路径, 值, 旧值) {
+        socket.session.通用数据 = 生成监视对象(function (路径, 值, 旧值) {
             r.提交通用数据更新(socket)({ 路径, 值 })
         })
     },
     通用数据更新: socket => ({ 路径, 值 }) => {
         console.log('收到', '通用数据更新', { 路径, 值 })
-        if (对象扩展.判断路径值相等(路径, 值, socket.session.数据))
+        if (对象扩展.判断路径值相等(路径, 值, socket.session.通用数据))
             return
-        对象扩展.IO_设置对象路径值(路径, 值, socket.session.数据)
+        对象扩展.IO_设置对象路径值(路径, 值, socket.session.通用数据)
     },
     提交通用数据更新: socket => ({ 路径, 值 }) => {
         console.log('发出', '通用数据更新', { 路径, 值 })
@@ -35,10 +35,15 @@ var r = {
         socket.提交('写日志')(`这是 ws 的响应, 你的 session.userid 是 ${socket.session.userid}`)
         socket.提交('写日志')(`用户池: ${socket.获得用户池().map(a => a.id)}`)
         socket.发送给所有用户('写日志')(`有人点击了按钮`)
-        r.提交通用数据更新(socket)({
-            路径: ['测试数据'],
-            值: '这是后端ws返回的值'
-        })
+
+        // 你可以这样调用 socket_event 里的方法
+        // r.提交通用数据更新(so.cket)({
+        //     路径: ['测试数据'],
+        //     值: '这是后端ws返回的值'
+        // })
+
+        // 你可以直接这个这个对象的属性 它会被自动以`提交通用数据更新`发送给前端
+        socket.session.通用数据.测试数据 = '这是后端ws返回的值'
     },
 }
 
