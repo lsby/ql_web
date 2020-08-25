@@ -23,7 +23,7 @@ var 布局们 = getDir(require.context('./layout', true, /.vue$/))
 var 页面们 = getDir(require.context('./page', true, /.vue$/))
 
 var main = async _ => {
-    await post('/api/intSession')({})
+    await post('/api/initSession')({})
 
     Vue.use(Vuex)
     Vue.use(VueRouter)
