@@ -23,7 +23,7 @@ var 布局们 = getDir(require.context('./layout', true, /.vue$/))
 var 页面们 = getDir(require.context('./page', true, /.vue$/))
 
 var main = async _ => {
-    await post('/api/初始化session')({})
+    await post('/api/intSession')({})
 
     Vue.use(Vuex)
     Vue.use(VueRouter)
@@ -63,11 +63,7 @@ var main = async _ => {
             Vue.prototype.$socket = socket
 
             Vue.prototype.$Vuex = {}
-            Vue.prototype.$Vuex.数据 = new Proxy({}, {
-                get(target, propKey, receiver) {
-                    return store.state[propKey]
-                }
-            })
+            Vue.prototype.$Vuex.数据 = store.state
             Vue.prototype.$Vuex.突变 = (路径, 值) => store.commit('设置值', { 路径, 值 })
 
             Vue.prototype.$深克隆 = 值 => lodash.cloneDeep(值)
