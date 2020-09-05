@@ -15,7 +15,7 @@ export default 构造vue组件({
   name: "riqi",
   数据: {
     名称: "日期选择",
-    值: new Date(),
+    值: "",
   },
   延时构造() {
     var self = this;
@@ -52,6 +52,7 @@ export default 构造vue组件({
   },
   函数: {
     格式化(date) {
+      if (date == "" || date == null) date = new Date();
       var day = date.getDate();
       var month = date.getMonth() + 1;
       var year = date.getFullYear();

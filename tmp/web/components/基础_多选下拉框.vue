@@ -7,6 +7,7 @@
       show-field="name"
       :multiple="true"
       style="display: inline-table;"
+      @values="值=$event.map(a=>a.name)"
     ></v-selectpage>
   </span>
 </template>

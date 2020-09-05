@@ -6,10 +6,7 @@
           <shu></shu>
         </td>
         <td width="80%" valign="top" align="center">
-          <shurukuang></shurukuang>
-          <xialakuang></xialakuang>
-          <riqi></riqi>
-          <duoxuanxialakuang></duoxuanxialakuang>
+          <biaodanzu :数据_数据.sync="表单组数据"></biaodanzu>
           <anniuzu :数据_数据="按钮数据" @按钮1="按钮事件($event)" @按钮2="按钮事件($event)"></anniuzu>
         </td>
       </tr>
@@ -33,6 +30,12 @@ import 构造vue组件 from "@lib/前端/构造vue组件";
 export default 构造vue组件({
   数据: {
     按钮数据: [{ 名称: "按钮1" }, { 名称: "按钮2" }],
+    表单组数据: [
+      { 名称: "输入框", 类型: "输入框", 提示字: "请输入一些文本", 值: "" },
+      { 名称: "下拉框", 类型: "下拉框", 值: "" },
+      { 名称: "日期选择", 类型: "日期选择", 值: "" },
+      { 名称: "多选下拉框", 类型: "多选下拉框", 值: [] },
+    ],
   },
   构造函数() {},
   函数: {
