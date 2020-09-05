@@ -3,7 +3,6 @@
     {{名称}}
     <input
       type="text"
-      class="form-control"
       :placeholder="提示字"
       style="display: inline; width: auto;"
       @input="值=$event.target.value"

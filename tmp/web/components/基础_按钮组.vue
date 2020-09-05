@@ -1,7 +1,7 @@
 <template>
   <div class="btn-group" role="group">
     <button
-      @click="$emit(项.名称)"
+      @click="$emit(项.名称, 项.名称)"
       type="button"
       class="btn btn-secondary"
       v-for="项 in 数据"

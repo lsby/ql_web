@@ -1,6 +1,7 @@
 <template>
   <div>
     <button @click="$路由.跳转('demo')">{{$Vuex.数据.标题}}</button>
+    <button @click="$路由.跳转('components')">组件</button>
   </div>
 </template>
 
