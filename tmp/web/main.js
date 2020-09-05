@@ -20,12 +20,9 @@ import app from './app.vue'
 import state from './state'
 
 var 组件们 = getDir(require.context('./components', true, /.vue$/))
-var 布局们 = getDir(require.context('./layout', true, /.vue$/))
 var 页面们 = getDir(require.context('./page', true, /.vue$/))
 
 var main = async _ => {
-    await post('/api/initSession', {})
-
     Vue.use(Vuex)
     Vue.use(VueRouter)
     Vue.use(SelectPage, { language: 'zh' })
@@ -63,7 +60,7 @@ var main = async _ => {
         }
     })
 
-    Array.from([...组件们, ...布局们]).forEach(a => Vue.component(a.obj.name, a.obj))
+    Array.from(组件们).forEach(a => Vue.component(a.obj.name, a.obj))
     new Vue({
         store,
         router,
