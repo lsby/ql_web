@@ -1,14 +1,14 @@
 <template>
-  <zuoyou 数据_左宽度="80%" 数据_右宽度="20%">
-    <template #左>
-      <Select v-model="值" multiple :max-tag-count="1">
-        <Option v-for="item in 选项" :value="item.value" :key="item.value">{{ item.label }}</Option>
-      </Select>
-    </template>
-    <template #右>
-      <button @click="按钮事件()">{{c_按钮文字}}</button>
-    </template>
-  </zuoyou>
+  <span>
+    {{名称}}
+    <v-selectpage
+      :data="list"
+      key-field="id"
+      show-field="name"
+      :multiple="true"
+      style="display: inline-table;"
+    ></v-selectpage>
+  </span>
 </template>
 
 <script>
@@ -17,30 +17,37 @@ import 构造vue组件 from "@lib/前端/构造vue组件";
 export default 构造vue组件({
   name: "duoxuanxialakuang",
   数据: {
-    选项: [
+    list: [
+      { id: 1, name: "The People's Republic of China", desc: "中华人民共和国" },
+      { id: 2, name: "United States of America", desc: "美利坚合众国" },
       {
-        value: "纽约",
-        label: "纽约",
+        id: 3,
+        name: "United Kingdom of Great Britain and Northern Ireland",
+        desc: "大不列颠及北爱尔兰联合王国",
       },
+      { id: 4, name: "Japan", desc: "日本" },
+      { id: 5, name: "Russian Federation", desc: "俄罗斯联邦" },
       {
-        value: "伦敦",
-        label: "伦敦",
+        id: 6,
+        name: "The Federal Republic of Germany",
+        desc: "德意志联邦共和国",
       },
+      { id: 7, name: "French Republic", desc: "法兰西共和国" },
+      { id: 8, name: "The Kingdom of Spain", desc: "西班牙王国" },
+      { id: 9, name: "Republic of India", desc: "印度共和国" },
+      { id: 10, name: "Repubblica Italiana", desc: "意大利共和国" },
+      { id: 11, name: "Canada", desc: "加拿大" },
+      { id: 12, name: "The Republic of Argentina", desc: "阿根廷共和国" },
+      { id: 13, name: "The Kingdom of Sweden", desc: "瑞典王国" },
+      { id: 14, name: "The Kingdom of Norway", desc: "挪威王国" },
+      { id: 15, name: "The Czech Republic", desc: "捷克共和国" },
     ],
+    名称: "多选下拉框",
     值: [],
   },
-  函数: {
-    按钮事件() {
-      if (this.c_按钮文字 == "全选")
-        return (this.值 = this.选项.map((a) => a.value));
-      if (this.c_按钮文字 == "清空") return (this.值 = []);
-    },
-  },
-  计算属性: {
-    c_按钮文字() {
-      if (this.选项.length != this.值.length) return "全选";
-      return "清空";
-    },
-  },
+  延时构造() {},
+  函数: {},
 });
 </script>
+
+

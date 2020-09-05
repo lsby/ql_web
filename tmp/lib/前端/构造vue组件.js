@@ -30,17 +30,12 @@ export default function (opt) {
     })
 
     r._数据前缀 = '数据_'
-    r._注入前缀 = '注入_'
 
     r.props = {}
     Object.keys(opt.数据).forEach(name => r.props[r._数据前缀 + name] = { default: _ => opt.数据[name] })
-    Object.keys(opt.注入).forEach(name => r.props[r._注入前缀 + name] = { default: _ => opt.注入[name] })
 
     r.data = function () {
         var rx = lodash.cloneDeep(opt.数据)
-        for (var name in opt.注入) {
-            rx[name] = this[r._注入前缀 + name] || opt.注入[name]
-        }
         return rx
     }
 

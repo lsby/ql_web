@@ -1,15 +1,7 @@
 <template>
   <div style="height: 100%;">
     <transition :name="transitionName" style="height: 100%;">
-      <router-view
-        id="router-view"
-        class="Router"
-        :style="`
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-        `"
-      ></router-view>
+      <router-view id="router-view" class="Router" style="height: 100%;"></router-view>
     </transition>
   </div>
 </template>
