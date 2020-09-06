@@ -1,7 +1,7 @@
 <template>
   <span>
     {{名称}}
-    <select style="display: inline; width: auto;" @input="值=$event.target.value" :value="值">
+    <select style="display: inline; width: auto;" @change="值=$event.target.value" :value="值">
       <option v-for="项 in 选项" :key="项.值" :value="项.值">{{项.名称}}</option>
     </select>
   </span>
