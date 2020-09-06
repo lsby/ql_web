@@ -2,12 +2,17 @@
   <div>
     <table width="100%" height="100%" border="1">
       <tr>
-        <td width="20%" rowspan="3" valign="top">
+        <td width="20%" rowspan="4" valign="top">
           <shu></shu>
         </td>
         <td width="80%" valign="top" align="center">
           <biaodanzu :数据_数据.sync="表单组数据"></biaodanzu>
           <anniuzu :数据_数据="按钮数据" @按钮1="按钮事件($event)" @按钮2="按钮事件($event)"></anniuzu>
+        </td>
+      </tr>
+      <tr>
+        <td align="center">
+          <textarea :value="JSON.stringify(表单组数据)" style="width:100%; height:100%;"></textarea>
         </td>
       </tr>
       <tr>
