@@ -45,7 +45,7 @@ export default function (opt) {
             .forEach(name => this.$watch(_ => this[name], (newVal, oldVal) => {
                 if (lodash.isEqual(this[name.substring(r._数据前缀.length)], newVal)) return
                 // console.log('因为', name, '从', oldVal, '改变为', newVal, '所以', '将', name.substring(r._前缀.length), '设为', newVal)
-                this[name.substring(r._数据前缀.length)] = lodash.cloneDeep(newVal)
+                this[name.substring(r._数据前缀.length)] = lodash.isFunction(newVal) ? newVal : lodash.cloneDeep(newVal)
             }, {
                 deep: true,
                 immediate: true
