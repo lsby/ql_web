@@ -12,7 +12,10 @@
       </tr>
       <tr>
         <td align="center">
-          <textarea :value="JSON.stringify(表单组数据)" style="width:100%; height:100%;"></textarea>
+          <textarea
+            :value="JSON.stringify(表单组数据.map(a=>({名称:a.名称,值:a.值})))"
+            style="width:100%; height:100%;"
+          ></textarea>
         </td>
       </tr>
       <tr>
