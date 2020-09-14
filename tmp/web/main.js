@@ -11,8 +11,6 @@ import '@assets/css/Glyphicons.css'
 import 'bootstrap'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-import SelectPage from 'v-selectpage'
-
 import lodash from 'lodash'
 import post from '@lib/前端/post'
 import getDir from "@lib/通用/getDir"
@@ -28,7 +26,6 @@ var 页面们 = getDir(require.context('./page', true, /.vue$/))
 var main = async _ => {
     Vue.use(Vuex)
     Vue.use(VueRouter)
-    Vue.use(SelectPage, { language: 'zh' })
 
     var store = new Vuex.Store({
         strict: 是调试模式(),

@@ -1,16 +1,5 @@
 <template>
-  <table
-    border="1"
-    cellspacing="0"
-    cellpadding="0"
-    width="auto"
-    height="auto"
-    :style="`
-          border-collapse: collapse;
-          word-break:break-all;
-          word-wrap:break-word;
-        `"
-  >
+  <table border="1" cellspacing="0" cellpadding="0" width="auto" height="auto">
     <th
       v-for="表头项 in 表头"
       v-show="是否显示(表头项.名称)"

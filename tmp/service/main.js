@@ -42,7 +42,7 @@ app.use(session)
 app.use('/', express.static('./dist/web'))
 app.use('/api', (_ => {
     var router = express.Router()
-    路由们.forEach(obj => router.post(`/${obj.name}`, 安全同步运行(obj.obj, (req, res, next) => err => {
+    路由们.forEach(obj => router.all(`/${obj.name}`, 安全同步运行(obj.obj, (req, res, next) => err => {
         console.error(err)
         return next(err.toString())
     })))

@@ -24,7 +24,8 @@ import 构造vue组件 from "@lib/前端/构造vue组件";
 export default 构造vue组件({
   name: "fenye",
   数据: {
-    总页数: 10,
+    总行数: 100,
+    每页项目数: 10,
     当前页: 1,
   },
   延时构造() {},
@@ -44,6 +45,9 @@ export default 构造vue组件({
     },
   },
   计算属性: {
+    总页数() {
+      return Math.ceil(this.总行数 / this.每页项目数);
+    },
     可选页() {
       if (this.总页数 <= 6)
         return Array(this.总页数)
