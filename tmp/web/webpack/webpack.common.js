@@ -2,9 +2,6 @@ var path = require('path')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var { CleanWebpackPlugin } = require('clean-webpack-plugin')
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-var webpack = require('webpack')
-var VueLoaderPlugin = require('vue-loader/lib/plugin')
-var autoprefixer = require('autoprefixer')
 
 // TODO 公用css提取 vue的css提取
 // TODO vendors.bundle.js 文件过大
@@ -21,7 +18,6 @@ module.exports = {
     },
     plugins: [
         new CleanWebpackPlugin(),
-        new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
             title: 'index',
             template: path.join(__dirname, '../index.html'),
@@ -41,7 +37,6 @@ module.exports = {
             },
             { test: /\.(js|mjs)$/, use: ["source-map-loader"], enforce: "pre" },
 
-            { test: /\.vue$/, loader: 'vue-loader' },
             { test: /\.html$/, loader: 'html-loader' },
             { test: /\.css$/, loader: "style-loader!css-loader" },
 
@@ -51,7 +46,6 @@ module.exports = {
     },
     resolve: {
         alias: {
-            'vue': 'vue/dist/vue.esm.js',
             "@assets": path.join(__dirname, '../assets'),
             "@components": path.join(__dirname, '../components'),
             "@page": path.join(__dirname, '../page'),
