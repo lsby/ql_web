@@ -1,15 +1,16 @@
+import "core-js/stable"
+import "regenerator-runtime/runtime"
 import createError from 'http-errors'
 import express from 'express'
 import cookieParser from 'cookie-parser'
 import morgan from 'morgan'
 import http from 'http'
-import socketio from 'socket.io'
 import expressSession from 'express-session'
 import connectLoki from 'connect-loki'
-import socket事件 from './socketio/socket_event'
 import 应用设置 from '@config/app'
-import 中文路径支持 from '@lib/中文路径支持'
-import { 安全同步运行, getDir } from '@lib/index'
+import 中文路径支持 from '@lib/后端/中文路径支持'
+import 安全同步运行 from '@lib/通用/安全同步运行'
+import getDir from "@lib/通用/getDir"
 
 var LokiStore = connectLoki(expressSession)
 var port = 应用设置.端口
@@ -38,46 +39,10 @@ var session = expressSession({
 })
 app.use(session)
 
-// session 与 socket.io 的联系
-var session_req_io_map = {}
-app.use(function (req, res, next) {
-    var sessionID = req.sessionID
-    session_req_io_map[sessionID] = session_req_io_map[sessionID] || {}
-    session_req_io_map[sessionID].get_session = _ => req.session
-    req.socketio = session_req_io_map[sessionID].socketio
-    next()
-})
-
-// socket.io
-var io = socketio(server, { cookie: false })
-var io用户池 = []
-io.on('connection', function (socket) {
-    session(socket.request, {}, function () {
-        var sessionID = socket.request.sessionID
-        session_req_io_map[sessionID] = session_req_io_map[sessionID] || {}
-        session_req_io_map[sessionID].socketio = socket
-
-        socket.提交 = 名称 => 值 => socket.emit(名称, 值)
-        socket.发送 = socket.提交
-        socket.发送给所有用户 = 名称 => 值 => io用户池.forEach(a => a.socket.提交(名称)(值))
-        socket.获得用户池 = _ => io用户池
-
-        io用户池.push({ id: socket.id, socket })
-        if (socket事件.connection != null) socket事件.connection(socket)()
-        Reflect.ownKeys(socket事件).forEach(key => socket.on(key, (...args) => {
-            if (key == 'disconnect') io用户池 = io用户池.filter(a => a.id != socket.id)
-            if (session_req_io_map[sessionID].get_session)
-                socket.session = session_req_io_map[sessionID].get_session()
-            socket.session = socket.session || {}
-            socket事件[key](socket)(...args)
-        }))
-    })
-})
-
 app.use('/', express.static('./dist/web'))
 app.use('/api', (_ => {
     var router = express.Router()
-    路由们.forEach(obj => router.post(`/${obj.name}`, 安全同步运行(obj.obj, (req, res, next) => err => {
+    路由们.forEach(obj => router.all(`/${obj.name}`, 安全同步运行(obj.obj, (req, res, next) => err => {
         console.error(err)
         return next(err.toString())
     })))

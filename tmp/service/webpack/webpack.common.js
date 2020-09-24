@@ -19,7 +19,16 @@ module.exports = {
     ].filter(a => a != null),
     module: {
         rules: [
-            { test: /\.(js|mjs)$/, exclude: /(node_modules|bower_components)/, loader: "babel-loader" },
+            {
+                test: /\.(js|mjs)$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-env']
+                    }
+                }
+            },
             { test: /\.(js|mjs)$/, use: ["source-map-loader"], enforce: "pre" },
         ]
     },

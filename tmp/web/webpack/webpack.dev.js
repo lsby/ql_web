@@ -12,13 +12,8 @@ module.exports = merge(common, {
     devServer: {
         open: true,
         hot: true,
+        disableHostCheck: true,
         proxy: {
-            '/socket.io': {
-                target: 'http://127.0.0.1:3000',
-                changeOrigin: true,
-                secure: false,
-                ws: true,
-            },
             '/api': {
                 target: 'http://127.0.0.1:3000',
                 changeOrigin: true,
