@@ -1,5 +1,3 @@
-/** @jsx hyperScript **/
-
 // import "core-js/stable"
 // import "regenerator-runtime/runtime"
 
@@ -15,11 +13,17 @@
 // import 是调试模式 from "@lib/通用/是调试模式"
 // import 对象扩展 from "@lib/通用/对象扩展"
 
-import aaa from './aaa'
+// import aaa from './aaa'
 
-// const my = <div id="name">Hello, world!</div>
-console.log(aaa)
+import '@lib/通用/jsx2dom'
+var my = <div id="name">Hello, world!</div>
+console.log(my)
 
+// var profile = <div>
+//     <img src="avatar.png" className="profile" />
+//     <h3>{[user.firstName, user.lastName].join(' ')}</h3>
+// </div>;
+// console.log(profile)
 
 
 

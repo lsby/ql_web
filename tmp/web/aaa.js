@@ -1,6 +1,6 @@
 /** @jsx hyperScript **/
 
-const my = <div id="name">Hello, world!</div>
+var my = <div id="name">Hello, world!</div>
 
 export default my
 
