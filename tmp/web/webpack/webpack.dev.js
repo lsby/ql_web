@@ -20,6 +20,9 @@ module.exports = merge(common, {
                 secure: false,
             },
         },
-        contentBase: './dist'
+        contentBase: [
+            './dist',
+            './node_modules/layui-src/dist'
+        ]
     },
 })

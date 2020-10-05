@@ -1,4 +1,5 @@
 var path = require('path')
+var fs = require('fs')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var { CleanWebpackPlugin } = require('clean-webpack-plugin')
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
@@ -6,8 +7,37 @@ var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlug
 // TODO 公用css提取 vue的css提取
 // TODO vendors.bundle.js 文件过大
 
+var demo文件 = fs.readdirSync(path.join(__dirname, '../demo')).map(a => a.replace('.js', ''))
+var page文件 = fs.readdirSync(path.join(__dirname, '../page')).map(a => a.replace('.js', ''))
+
+var 入口 = []
+入口 = 入口.concat([{ 'index': path.join(__dirname, '../index.js') }])
+入口 = 入口.concat(demo文件.map(a => ({ [`demo/${a}`]: path.join(__dirname, `../demo/${a}.js`) })))
+入口 = 入口.concat(page文件.map(a => ({ [`page/${a}`]: path.join(__dirname, `../page/${a}.js`) })))
+入口 = 入口.reduce((s, a) => Object.assign(s, a), {})
+
+var html构造 = []
+html构造 = html构造.concat([new HtmlWebpackPlugin({
+    title: 'index',
+    template: path.join(__dirname, '../index.html'),
+    filename: `index.html`,
+    chunks: ['index']
+})])
+html构造 = html构造.concat(demo文件.map(a => new HtmlWebpackPlugin({
+    title: a,
+    template: path.join(__dirname, '../index.html'),
+    filename: `demo/${a}.html`,
+    chunks: [`demo/${a}`]
+})))
+html构造 = html构造.concat(page文件.map(a => new HtmlWebpackPlugin({
+    title: a,
+    template: path.join(__dirname, '../index.html'),
+    filename: `page/${a}.html`,
+    chunks: [`page/${a}`]
+})))
+
 module.exports = {
-    entry: path.join(__dirname, '../main.js'),
+    entry: 入口,
     output: {
         filename: '[name].[hash].bundle.js',
         path: path.join(__dirname, '../../dist/web'),
@@ -18,11 +48,7 @@ module.exports = {
     },
     plugins: [
         new CleanWebpackPlugin(),
-        new HtmlWebpackPlugin({
-            title: 'index',
-            template: path.join(__dirname, '../index.html'),
-            filename: `index.html`,
-        }),
+        ...html构造,
         process.env.analyz == 'true' ? new BundleAnalyzerPlugin() : null,
     ].filter(a => a != null),
     module: {
@@ -33,7 +59,7 @@ module.exports = {
                     options: {
                         presets: ['@babel/preset-env'],
                         "plugins": [
-                            ["transform-react-jsx", { "pragma": "jsx2dom" }]
+                            ["transform-react-jsx"]
                         ]
                     }
                 }
