@@ -15,5 +15,3 @@ export var post_json = 地址 => 参数 => {
         })
     })
 }
-
-
