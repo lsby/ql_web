@@ -1,17 +1,17 @@
 import '@lib/前端/通用头'
 import 数据绑定 from "@lib/前端/数据绑定"
 
-setTimeout(() => {
-    $('#app').append(
+$('#app').html(html`
+    <div>
+        <h1>hello world1</h1>
+        <button>测试</button>
+        <p>{{message}}</p>
+        <a href="/demo/多弹出框.html">多弹出框</a>
         <div>
-            <h1>hello world1</h1>
-            <p>||message||</p>
-            <a href="/demo/多弹出框.html">多弹出框</a>
-            <div>
-                <input v-model="message" />
-            </div>
+            <input v-model="message" />
         </div>
-    )
-    数据绑定(window.全局数据)
-}, 0);
+    </div>
+`)
+数据绑定(全局数据)
 
+全局事件.监听('测试', a => console.log(a))

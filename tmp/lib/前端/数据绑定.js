@@ -1,11 +1,15 @@
 import Vue from 'vue/dist/vue'
 
-export default function (data) {
+export default function (data, methods, computed) {
     setTimeout(() => {
+        data = data || {}
+        methods = methods || {}
+        computed = computed || {}
         new Vue({
             el: '#app',
-            delimiters: ['||', '||'],
-            data
+            data,
+            methods,
+            computed
         })
     }, 0)
 }
