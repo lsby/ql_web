@@ -17,4 +17,9 @@ import jq2html from "@lib/前端/jq2html"
 
 var layer = layui.layer
 
-$('#app').append(<h1>hello world</h1>)
+$('#app').append(
+    <div>
+        <h1>hello world</h1>
+        <a href="/demo/多弹出框.html">多弹出框</a>
+    </div>
+)

@@ -15,9 +15,6 @@ import $ from 'jquery'
 import React from "aurantium"
 import jq2html from "@lib/前端/jq2html"
 
-console.log(1)
+var layer = layui.layer
 
-// var layer = layui.config({ dir: '/aaa/' }).layer
-
-var my = <div id="name">test</div>
-$('#app').append(my)
+$('#app').append(<h1>hello world</h1>)
