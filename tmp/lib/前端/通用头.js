@@ -15,11 +15,9 @@ import 数据绑定 from "@lib/前端/数据绑定"
 
 import _$ from 'jquery'
 import _React from "aurantium"
-import _jq2html from "@lib/前端/jq2html"
+import data from '@web/data'
 
-var 全局数据 = 全局数据 || window.parent.全局数据
-数据绑定(全局数据)
+数据绑定(window.top.全局数据 || data)
 
 window.$ = _$
 window.React = _React
-window.jq2html = _jq2html

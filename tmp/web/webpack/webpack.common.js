@@ -12,8 +12,8 @@ var page文件 = fs.readdirSync(path.join(__dirname, '../page')).map(a => a.repl
 
 var 入口 = []
 入口 = 入口.concat([{ 'index': path.join(__dirname, '../index.js') }])
-入口 = 入口.concat(demo文件.map(a => ({ [`${a}`]: path.join(__dirname, `../demo/${a}.js`) })))
-入口 = 入口.concat(page文件.map(a => ({ [`${a}`]: path.join(__dirname, `../page/${a}.js`) })))
+入口 = 入口.concat(demo文件.map(a => ({ [`demo_${a}`]: path.join(__dirname, `../demo/${a}.js`) })))
+入口 = 入口.concat(page文件.map(a => ({ [`page_${a}`]: path.join(__dirname, `../page/${a}.js`) })))
 入口 = 入口.reduce((s, a) => Object.assign(s, a), {})
 
 var html构造 = []
@@ -27,13 +27,13 @@ html构造 = html构造.concat(demo文件.map(a => new HtmlWebpackPlugin({
     title: a,
     template: path.join(__dirname, '../index.html'),
     filename: `demo/${a}.html`,
-    chunks: [`${a}`]
+    chunks: [`demo_${a}`]
 })))
 html构造 = html构造.concat(page文件.map(a => new HtmlWebpackPlugin({
     title: a,
     template: path.join(__dirname, '../index.html'),
     filename: `page/${a}.html`,
-    chunks: [`${a}`]
+    chunks: [`page_${a}`]
 })))
 
 module.exports = {
@@ -78,6 +78,7 @@ module.exports = {
             "@assets": path.join(__dirname, '../assets'),
             "@components": path.join(__dirname, '../components'),
             "@page": path.join(__dirname, '../page'),
+            "@web": path.join(__dirname, '../'),
             "@lib": path.join(__dirname, '../../lib'),
             "@config": path.join(__dirname, '../../config'),
         }
