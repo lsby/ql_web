@@ -36,6 +36,7 @@
   },
   "homepage": "https://github.com/lsby/ql_web#readme",
   "dependencies": {
-    "esm": "^3.2.25"
+    "esm": "^3.2.25",
+    "vue": "^2.6.12"
   }
 }

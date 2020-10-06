@@ -13,13 +13,7 @@ import 'layui-src/dist/layui.all.js'
 import "@lib/前端/热重载"
 import $ from 'jquery'
 import React from "aurantium"
-import jq2html from "@lib/前端/jq2html"
-
-var layer = layui.layer
 
 $('#app').append(
-    <div>
-        <h1>hello world</h1>
-        <a href="/demo/多弹出框.html">多弹出框</a>
-    </div>
+    <iframe src='/page/index.html' style="height: 100%; width:100%;"></iframe>
 )
