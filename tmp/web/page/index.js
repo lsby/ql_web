@@ -1,4 +1,5 @@
 import '@lib/前端/通用头'
+import 数据绑定 from "@lib/前端/数据绑定"
 
 var layer = layui.layer
 
@@ -42,3 +43,5 @@ layer.open({
         Math.random() * ($(window).width() - 390)
     ]
 })
+
+数据绑定(window.全局数据)
