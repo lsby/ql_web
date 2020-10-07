@@ -3,10 +3,8 @@ import 数据绑定 from "@lib/前端/数据绑定"
 
 $('#app').html(html`
     <div>
-        <h1>hello world1</h1>
-        <button>测试</button>
+        <h1 id="aaa">页面1</h1>
         <p>{{message}}</p>
-        <a href="/demo/多弹出框.html">多弹出框</a>
         <div>
             <input v-model="message" />
         </div>
@@ -14,4 +12,6 @@ $('#app').html(html`
 `)
 数据绑定(全局数据)
 
-全局事件.监听('测试', a => console.log(a))
+全局事件.监听('测试', a => {
+    $('#aaa').html(a)
+})

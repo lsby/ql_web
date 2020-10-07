@@ -7,12 +7,10 @@ var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlug
 // TODO 公用css提取 vue的css提取
 // TODO vendors.bundle.js 文件过大
 
-var demo文件 = fs.readdirSync(path.join(__dirname, '../demo')).map(a => a.replace('.js', ''))
 var page文件 = fs.readdirSync(path.join(__dirname, '../page')).map(a => a.replace('.js', ''))
 
 var 入口 = []
 入口 = 入口.concat([{ 'index': path.join(__dirname, '../index.js') }])
-入口 = 入口.concat(demo文件.map(a => ({ [`demo_${a}`]: path.join(__dirname, `../demo/${a}.js`) })))
 入口 = 入口.concat(page文件.map(a => ({ [`page_${a}`]: path.join(__dirname, `../page/${a}.js`) })))
 入口 = 入口.reduce((s, a) => Object.assign(s, a), {})
 
@@ -23,12 +21,6 @@ html构造 = html构造.concat([new HtmlWebpackPlugin({
     filename: `index.html`,
     chunks: ['index']
 })])
-html构造 = html构造.concat(demo文件.map(a => new HtmlWebpackPlugin({
-    title: a,
-    template: path.join(__dirname, '../index.html'),
-    filename: `demo/${a}.html`,
-    chunks: [`demo_${a}`]
-})))
 html构造 = html构造.concat(page文件.map(a => new HtmlWebpackPlugin({
     title: a,
     template: path.join(__dirname, '../index.html'),
