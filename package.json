@@ -1,43 +1,41 @@
 {
-  "name": "@lsby/ql_web",
-  "version": "1.2.12",
-  "description": "web项目模板",
-  "main": "index.js",
-  "bin": {
-    "lsby_ql_web": "./bin/main.js"
-  },
-  "files": [
-    "/",
-    "!.*.swp",
-    "!._*",
-    "!.DS_Store",
-    "!.git",
-    "!.hg",
-    "!.npmrc",
-    "!.lock-wscript",
-    "!.svn",
-    "!.wafpickle-*",
-    "!config.gypi",
-    "!CVS",
-    "!npm-debug.log"
-  ],
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/lsby/ql_web.git"
-  },
-  "keywords": [],
-  "author": "lsby",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/lsby/ql_web/issues"
-  },
-  "homepage": "https://github.com/lsby/ql_web#readme",
-  "dependencies": {
-    "esm": "^3.2.25",
-    "htm": "^3.0.4",
-    "vue": "^2.6.12"
-  }
+    "name": "@lsby/ql_web",
+    "version": "3.0.0",
+    "description": "web项目模板",
+    "main": "index.js",
+    "bin": {
+        "lsby_ql_web": "./bin/main.js"
+    },
+    "files": [
+        "/",
+        "!.*.swp",
+        "!._*",
+        "!.DS_Store",
+        "!.git",
+        "!.hg",
+        "!.npmrc",
+        "!.lock-wscript",
+        "!.svn",
+        "!.wafpickle-*",
+        "!config.gypi",
+        "!CVS",
+        "!npm-debug.log"
+    ],
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/lsby/ql_web.git"
+    },
+    "keywords": [],
+    "author": "lsby",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/lsby/ql_web/issues"
+    },
+    "homepage": "https://github.com/lsby/ql_web#readme",
+    "dependencies": {
+        "esm": "^3.2.25"
+    }
 }
