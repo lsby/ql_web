@@ -12,12 +12,13 @@ import 'layui-src/dist/layui.all.js'
 
 import "@lib/前端/热重载"
 
-import _$ from 'jquery'
+import 'webpack-jquery-ui'
+import 'webpack-jquery-ui/css'
+
 import _data from '@web/data'
 import htm from 'htm'
 import vhtml from 'vhtml'
 
-window.$ = _$
 window.html = htm.bind(vhtml)
 
 window.全局数据 = window == window.top ? _data : window.top.全局数据

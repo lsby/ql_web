@@ -7,11 +7,17 @@ $('#app').html(html`
 <div>
     <h1>hello world</h1>
     <p>{{message}}</p>
+    <input type="text" name="date" id="date" />
     <div>
         <input v-model="message" />
     </div>
 </div>
 `)
+
+setTimeout(() => {
+    $("#date").datepicker();
+}, 1000);
+
 
 layer.open({
     type: 2,

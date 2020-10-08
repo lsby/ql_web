@@ -1,5 +1,6 @@
 var path = require('path')
 var fs = require('fs')
+var webpack = require('webpack')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var { CleanWebpackPlugin } = require('clean-webpack-plugin')
 var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
@@ -42,6 +43,14 @@ module.exports = {
         new CleanWebpackPlugin(),
         ...html构造,
         process.env.analyz == 'true' ? new BundleAnalyzerPlugin() : null,
+        new webpack.ProvidePlugin({
+            $: "jquery",
+            jQuery: "jquery",
+            jquery: "jquery",
+            "window.jQuery": "jquery",
+            "window.jquery": "jquery",
+            "window.$": "jquery"
+        })
     ].filter(a => a != null),
     module: {
         rules: [

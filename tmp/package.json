@@ -33,7 +33,6 @@
         "get-url-params": "^1.0.1",
         "htm": "^3.0.4",
         "http-errors": "~1.6.3",
-        "jquery": "^3.5.1",
         "layui-src": "^2.5.5",
         "morgan": "~1.9.1",
         "pm2": "^4.4.0",
@@ -42,7 +41,8 @@
         "regenerator-runtime": "^0.13.7",
         "request": "^2.88.2",
         "vhtml": "^2.2.0",
-        "vue": "^2.6.11"
+        "vue": "^2.6.11",
+        "webpack-jquery-ui": "^2.0.1"
     },
     "devDependencies": {
         "@babel/core": "^7.10.3",
