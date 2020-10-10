@@ -1,22 +1,28 @@
 import '@lib/前端/通用头'
+import { post_json } from '@lib/前端/http'
 import 数据绑定 from "@lib/前端/数据绑定"
 
 var layer = layui.layer
 
 $('#app').html(html`
-<div>
-    <h1>hello world</h1>
-    <p>{{message}}</p>
-    <input type="text" name="date" id="date" />
+    <h1>post测试</h1>
     <div>
-        <input v-model="message" />
+        <textarea style="width:100%; height:500px;">{{日志}}</textarea>
     </div>
-</div>
+    <div>
+        <button type="button" class="btn btn-primary" @click="发送请求()">发送请求</button>
+    </div>
 `)
 
-setTimeout(() => {
-    $("#date").datepicker();
-}, 1000);
+var 数据 = 数据绑定({
+    全局数据,
+    日志: ''
+}, {
+    async 发送请求() {
+        var data = await post_json('/api/test', {})
+        数据.日志 += data + '\n'
+    }
+})
 
 
 layer.open({
@@ -48,5 +54,3 @@ layer.open({
         Math.random() * ($(window).width() - 390)
     ]
 })
-
-数据绑定(全局数据)

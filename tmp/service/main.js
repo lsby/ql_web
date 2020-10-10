@@ -9,7 +9,6 @@ import expressSession from 'express-session'
 import connectLoki from 'connect-loki'
 import 应用设置 from '@config/app'
 import 中文路径支持 from '@lib/后端/中文路径支持'
-import 安全同步运行 from '@lib/通用/安全同步运行'
 import getDir from "@lib/通用/getDir"
 
 var LokiStore = connectLoki(expressSession)
@@ -42,10 +41,13 @@ app.use(session)
 app.use('/', express.static('./dist/web'))
 app.use('/api', (_ => {
     var router = express.Router()
-    路由们.forEach(obj => router.all(`/${obj.name}`, 安全同步运行(obj.obj, (req, res, next) => err => {
-        console.error(err)
-        return next(err.toString())
-    })))
+    路由们.forEach(obj => router.all(`/${obj.name}`, async (req, res, next) => {
+        var data = await obj.obj(req, res).catch(e => {
+            next(e.toString())
+            throw e
+        })
+        res.send(data)
+    }))
     return router
 })())
 
@@ -64,4 +66,11 @@ server.on('error', error => {
     if (error.code == 'EACCES') throw '需要提升权限'
     if (error.code == 'EADDRINUSE') throw '端口被占用'
     throw error
+})
+
+process.on('uncaughtException', function (e) {
+    console.error('未捕获的异常', e)
+})
+process.on('unhandledRejection', (e, p) => {
+    console.error('未捕获的Promise异常', e, p)
 })
